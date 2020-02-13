@@ -1,0 +1,9 @@
+create database uni;
+
+use uni;
+
+create table student(
+    sid int,
+    sname char(40)
+    primary key(sid)
+)
