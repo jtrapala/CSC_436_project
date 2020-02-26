@@ -1,13 +1,13 @@
 
 
-'''This is a test for using sqLite 3 with PINCode 
+'''This is a test for using sqLite 3 with PINCode
 It creates a database for donors, recipients, staff, blood types, and ...
 '''
 import flask
 import sqlite3 as lite
 import datetime
 import os
-#from sqlite3 import Error
+# from sqlite3 import Error
 from os.path import join, dirname, realpath
 
 
@@ -26,19 +26,33 @@ def start_c2(conn):
 
 
 def adt(c):
-    c.execute("""
-		create table admins(
+
+    # get the count of tables with the name
+    c.execute(
+        ''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='admins' ''')
+    if c.fetchone()[0] == 0:
+        {
+            c.execute("""
+		    create table admins(
 			user,
 			pw);""")
+        }
+
 
 # Creates user/pin/time table
 
 
 def upt(c):
-    c.execute("""create table users_pin(
-		userN,
-		userPin,
-		time);""")
+
+    c.execute(
+        ''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='users_pin' ''')
+    if c.fetchone()[0] == 0:
+        {
+            c.execute("""create table users_pin(
+			userN,
+			userPin,
+			time);""")
+        }
 
 
 def adm_add(nm, users, c, conn):
@@ -64,7 +78,7 @@ def kn_pin(c, users, nm, conn):
 
 
 def db_upr(c):
-    #from PINCode_1 import conn,c
+    # from PINCode_1 import conn,c
     # Print USERS
     print("---------------USERS------------------------")
     for row in c.execute('SELECT * FROM admins'):
@@ -73,7 +87,7 @@ def db_upr(c):
 
 
 def db_ppr(c):
-    #from PINCode_1 import conn,c
+    # from PINCode_1 import conn,c
     # Print PIN_ENTRIES
     print("---------------PIN_ENTRIES------------------")
     for row in c.execute('SELECT * FROM users_pin ORDER BY userN'):
@@ -81,7 +95,7 @@ def db_ppr(c):
 
 
 def db_close(conn):
-    #from PINCode_1 import conn,c
+    # from PINCode_1 import conn,c
     conn.close
     print("\nPIN Database is now closed")
     print("\n#####################################\n")

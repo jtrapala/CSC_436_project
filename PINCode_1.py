@@ -43,8 +43,8 @@ e2 = Entry
 
 print("PIN Database is now open for use\n")
 
-# sp.adt()
-# sp.upt()
+sp.adt(c)
+sp.upt(c)
 #sp.adm_add(nm, users, c, conn)
 
 # Print admin table
@@ -180,8 +180,8 @@ master.title("Enter the 4 digit PIN")
 variable = StringVar(master)
 
 #########    Fonts for buttons    ##########
-bt_font = tkFont.Font(family='Arial', size=16, weight=tkFont.BOLD)
-m_font = tkFont.Font(family='Arial', size=12, weight=tkFont.BOLD)
+bt_font = tkinter.Font(family='Arial', size=16, weight=tkFont.BOLD)
+m_font = tkinter.Font(family='Arial', size=12, weight=tkFont.BOLD)
 # SO MANY BUTTONS    ###########################################First Row
 button = Button(master, text="1", font=bt_font,
                 command=lambda arg1="1": buttonHandler(1))
