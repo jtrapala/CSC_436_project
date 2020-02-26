@@ -172,7 +172,7 @@ def buttonHandler_a(event, argument1):
     # adminSubmit(argument1)
 
 
-sp.web_p()
+# sp.web_p()
 
 
 master = Tk()
@@ -180,8 +180,8 @@ master.title("Enter the 4 digit PIN")
 variable = StringVar(master)
 
 #########    Fonts for buttons    ##########
-bt_font = tkinter.Font(family='Arial', size=16, weight=tkFont.BOLD)
-m_font = tkinter.Font(family='Arial', size=12, weight=tkFont.BOLD)
+bt_font = tkinter.Font(family='Arial', size=16, weight=tkinter.Font.BOLD)
+m_font = tkinter.Font(family='Arial', size=12, weight=tkinter.Font.BOLD)
 # SO MANY BUTTONS    ###########################################First Row
 button = Button(master, text="1", font=bt_font,
                 command=lambda arg1="1": buttonHandler(1))
