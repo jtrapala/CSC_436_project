@@ -8,8 +8,7 @@
 
 # for gui
 import tkinter
-# for font options
-from tkinter import *
+import tkinter.font
 # For hashing pass codes
 import hashlib
 #import sqlite3 as lite
@@ -175,88 +174,87 @@ def buttonHandler_a(event, argument1):
 # sp.web_p()
 
 
-master = Tk()
+master = tkinter.Tk()
 master.title("Enter the 4 digit PIN")
-variable = StringVar(master)
+variable = tkinter.StringVar(master)
 
 #########    Fonts for buttons    ##########
-bt_font = tkinter.Font(family='Arial', size=16, weight=tkinter.Font.BOLD)
-m_font = tkinter.Font(family='Arial', size=12, weight=tkinter.Font.BOLD)
+bt_font = tkinter.font.Font(family='Arial', size=16, weight=tkinter.font.BOLD)
+m_font = tkinter.font.Font(family='Arial', size=12, weight=tkinter.font.BOLD)
 # SO MANY BUTTONS    ###########################################First Row
-button = Button(master, text="1", font=bt_font,
+button = tkinter.Button(master, text="1", font=bt_font,
                 command=lambda arg1="1": buttonHandler(1))
 button.bind("<Return>", lambda event, arg1="1": buttonHandler_a(event, arg1))
 button.grid(row=2, column=0)
 
-button2 = Button(master, text="2", font=bt_font,
+button2 = tkinter.Button(master, text="2", font=bt_font,
                  command=lambda arg1="2": buttonHandler(2))
 button2.bind("<Return>", lambda event, arg1="2": buttonHandler_a(event, arg1))
 button2.grid(row=2, column=1)
 
-button3 = Button(master, text="3", font=bt_font,
+button3 = tkinter.Button(master, text="3", font=bt_font,
                  command=lambda arg1="3": buttonHandler(3))
 button3.bind("<Return>", lambda event, arg1="3": buttonHandler_a(event, arg1))
 button3.grid(row=2, column=2)
 
 # Second Row
-button4 = Button(master, text="4", font=bt_font,
+button4 = tkinter.Button(master, text="4", font=bt_font,
                  command=lambda arg1="4": buttonHandler(4))
 button4.bind("<Return>", lambda event, arg1="4": buttonHandler_a(event, arg1))
 button4.grid(row=3, column=0)
 
-button5 = Button(master, text="5", font=bt_font,
+button5 = tkinter.Button(master, text="5", font=bt_font,
                  command=lambda arg1="5": buttonHandler(5))
 button5.bind("<Return>", lambda event, arg1="5": buttonHandler_a(event, arg1))
 button5.grid(row=3, column=1)
 
-button6 = Button(master, text="6", font=bt_font,
+button6 = tkinter.Button(master, text="6", font=bt_font,
                  command=lambda arg1="6": buttonHandler(6))
 button6.bind("<Return>", lambda event, arg1="6": buttonHandler_a(event, arg1))
 button6.grid(row=3, column=2)
 
 # Third Row
-button7 = Button(master, text="7", font=bt_font,
+button7 = tkinter.Button(master, text="7", font=bt_font,
                  command=lambda arg1="7": buttonHandler(7))
 button7.bind("<Return>", lambda event, arg1="7": buttonHandler_a(event, arg1))
 button7.grid(row=4, column=0)
 
-button8 = Button(master, text="8", font=bt_font,
+button8 = tkinter.Button(master, text="8", font=bt_font,
                  command=lambda arg1="8": buttonHandler(8))
 button8.bind("<Return>", lambda event, arg1="8": buttonHandler_a(event, arg1))
 button8.grid(row=4, column=1)
 
-button9 = Button(master, text="9", font=bt_font,
+button9 = tkinter.Button(master, text="9", font=bt_font,
                  command=lambda arg1="9": buttonHandler(9))
 button9.bind("<Return>", lambda event, arg1="9": buttonHandler_a(event, arg1))
 button9.grid(row=4, column=2)
 
 # Function Keys
-button9 = Button(master, text="ENTER", font=m_font, bg="green",
+button9 = tkinter.Button(master, text="ENTER", font=m_font, bg="green",
                  command=lambda arg1="ENTER": buttonHandler("ENTER"))
 button9.bind("<Return>", lambda event,
              arg1="ENTER": buttonHandler_a(event, arg1))
 button9.grid(row=5, column=0, columnspan=3)
 
-button10 = Button(master, text="CLEAR", font=m_font, bg="gold",
+button10 = tkinter.Button(master, text="CLEAR", font=m_font, bg="gold",
                   command=lambda arg1="CLEAR": buttonHandler("CLEAR"))
 button10.bind("<Return>", lambda event,
               arg1="CLEAR": buttonHandler_a(event, arg1))
 button10.grid(row=6, column=0, columnspan=3)
 
-quitButton = Button(master, text="QUIT", font=m_font,
+quitButton = tkinter.Button(master, text="QUIT", font=m_font,
                     bg="orange red", command=destroy)
 quitButton.grid(row=7, column=0, columnspan=3)
 
 ##################################################For accessing settings###
-s_button = Button(master, text="ADMIN",
+s_button = tkinter.Button(master, text="ADMIN",
                   command=lambda arg1="ADMIN": buttonHandler("SET"))
 s_button.bind("<Return>", lambda event,
               arg1="ADMIN": buttonHandler_a(event, arg1))
 s_button.grid(row=8, column=0, columnspan=3, pady=15)
 
 # For displaying PIN in the window
-text = Text(master, height=2, width=12)
+text = tkinter.Text(master, height=2, width=12)
 text.grid(row=1, column=0, columnspan=3)
 
-
-mainloop()
+tkinter.mainloop()
