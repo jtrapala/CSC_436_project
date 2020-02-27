@@ -9,6 +9,8 @@
 # for gui
 import tkinter
 import tkinter.font
+from tkinter import *
+from tkinter.ttk import *
 # For hashing pass codes
 import hashlib
 #import sqlite3 as lite
@@ -170,13 +172,26 @@ def buttonHandler_a(event, argument1):
     buttonHandler(argument1)
     # adminSubmit(argument1)
 
-
+# on change dropdown value
+def change_dropdown(*args):
+    print( variable.get() )
 # sp.web_p()
 
 
 master = tkinter.Tk()
+style=tkinter.ttk.Style()
+style.configure("BW.TLabel", foreground="black", background="white")
 master.title("Enter the 4 digit PIN")
 variable = tkinter.StringVar(master)
+variable.set("Donor")
+# Dropdown
+person={'Donor','Recipient'}
+popupMenu = tkinter.ttk.OptionMenu(master,variable, *person)
+popupMenu.grid(row = 2, column =15)
+
+
+# link function to change dropdown
+variable.trace('w', change_dropdown)
 
 #########    Fonts for buttons    ##########
 bt_font = tkinter.font.Font(family='Arial', size=16, weight=tkinter.font.BOLD)
@@ -197,46 +212,15 @@ button3 = tkinter.Button(master, text="3", font=bt_font,
 button3.bind("<Return>", lambda event, arg1="3": buttonHandler_a(event, arg1))
 button3.grid(row=2, column=2)
 
-# Second Row
-button4 = tkinter.Button(master, text="4", font=bt_font,
-                 command=lambda arg1="4": buttonHandler(4))
-button4.bind("<Return>", lambda event, arg1="4": buttonHandler_a(event, arg1))
-button4.grid(row=3, column=0)
-
-button5 = tkinter.Button(master, text="5", font=bt_font,
-                 command=lambda arg1="5": buttonHandler(5))
-button5.bind("<Return>", lambda event, arg1="5": buttonHandler_a(event, arg1))
-button5.grid(row=3, column=1)
-
-button6 = tkinter.Button(master, text="6", font=bt_font,
-                 command=lambda arg1="6": buttonHandler(6))
-button6.bind("<Return>", lambda event, arg1="6": buttonHandler_a(event, arg1))
-button6.grid(row=3, column=2)
-
-# Third Row
-button7 = tkinter.Button(master, text="7", font=bt_font,
-                 command=lambda arg1="7": buttonHandler(7))
-button7.bind("<Return>", lambda event, arg1="7": buttonHandler_a(event, arg1))
-button7.grid(row=4, column=0)
-
-button8 = tkinter.Button(master, text="8", font=bt_font,
-                 command=lambda arg1="8": buttonHandler(8))
-button8.bind("<Return>", lambda event, arg1="8": buttonHandler_a(event, arg1))
-button8.grid(row=4, column=1)
-
-button9 = tkinter.Button(master, text="9", font=bt_font,
-                 command=lambda arg1="9": buttonHandler(9))
-button9.bind("<Return>", lambda event, arg1="9": buttonHandler_a(event, arg1))
-button9.grid(row=4, column=2)
 
 # Function Keys
-button9 = tkinter.Button(master, text="ENTER", font=m_font, bg="green",
+button9 = tkinter.Button(master, text="Add", font=m_font, bg="green",
                  command=lambda arg1="ENTER": buttonHandler("ENTER"))
 button9.bind("<Return>", lambda event,
              arg1="ENTER": buttonHandler_a(event, arg1))
 button9.grid(row=5, column=0, columnspan=3)
 
-button10 = tkinter.Button(master, text="CLEAR", font=m_font, bg="gold",
+button10 = tkinter.Button(master, text="Delete", font=m_font, bg="gold",
                   command=lambda arg1="CLEAR": buttonHandler("CLEAR"))
 button10.bind("<Return>", lambda event,
               arg1="CLEAR": buttonHandler_a(event, arg1))
@@ -247,7 +231,7 @@ quitButton = tkinter.Button(master, text="QUIT", font=m_font,
 quitButton.grid(row=7, column=0, columnspan=3)
 
 ##################################################For accessing settings###
-s_button = tkinter.Button(master, text="ADMIN",
+s_button = tkinter.Button(master, text="Staff Login",
                   command=lambda arg1="ADMIN": buttonHandler("SET"))
 s_button.bind("<Return>", lambda event,
               arg1="ADMIN": buttonHandler_a(event, arg1))
