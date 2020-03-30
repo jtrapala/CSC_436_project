@@ -1,0 +1,66 @@
+CREATE TABLE `Blood Donor` (
+  `donor_ID` num(9),
+  `Name` varchar(25),
+  `Address` varchar(20),
+  `Phone Number` num(12),
+  `Medical Condition` varchar(50),
+  `Gender` char(10),
+  `DOB` varchar(10),
+  `Blood Type` char(6),
+  `bank_ID` num(9)
+);
+
+CREATE TABLE `Staff` (
+  `staff_ID` num(9),
+  `Name` varchar(25),
+  `Address` varchar(20),
+  `Phone Number` num(12),
+  `Shift` varchar(20),
+  `Gender` char(10),
+  `DOB` varchar(10),
+  `bank_ID` num(9)
+);
+
+CREATE TABLE `Blood` (
+  `blood_type` char(6),
+  `Blood Amount` char(6),
+  `Haemoglobin Content` char(6),
+  `Bloodbag_number` char(6),
+  `Double Red` char(6),
+  `donor_ID` num(9)
+);
+
+CREATE TABLE `Recipient` (
+  `recip_ID` num(9),
+  `Name` varchar(25),
+  `Address` varchar(20),
+  `Phone Number` num(12),
+  `Medical Condition` varchar(50),
+  `Gender` char(10),
+  `DOB` varchar(10),
+  `Urgency Status` num(1),
+  `Blood Type` char(6),
+  `donor_ID` num(9)
+);
+
+CREATE TABLE `Blood Bank` (
+  `bb_ID` num(9),
+  `Name` varchar(25),
+  `Address` varchar(20),
+  `City` varchar(20),
+  `State` varchar(15),
+  `Phone Number` num(12),
+  `Admin_Name` Type
+);
+
+CREATE TABLE `Blood Drive` (
+  `bdrive_ID` num(9),
+  `Name` varchar(25),
+  `Address` varchar(20),
+  `City` varchar(20),
+  `State` varchar(15),
+  `Phone Number` num(12),
+  `Description` varchar(1000),
+  `bank_ID` num(9)
+);
+
