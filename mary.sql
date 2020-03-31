@@ -154,6 +154,24 @@ VALUES (103, 'Christopher Markus', NULL, '818-445-9088', 'Unkown Disease', 'M', 
 INSERT INTO recipient (recip_ID, Name, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)
 VALUES (104, 'Lance Jockerson', NULL, '912-556-8819', 'Ringworm', 'M', '06/20/85', 3, 'B-', 178215);
 
+Select *
+From Blood_Bank; 
+
+Select *
+From Blood_Drive; 
+
+Select *
+From Staff; 
+
+Select *
+From Donor; 
+
+Select *
+From Blood;
+
+Select *
+From Recipient;  
+
 Select name 
 from recipient
 where Urgency_status > 5;
