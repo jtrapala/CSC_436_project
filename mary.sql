@@ -176,8 +176,10 @@ Select name
 from recipient
 where Urgency_status > 5;
 
+Create View BBB as  
 Select bb_id, d_name
-from blood_bank;
+from blood_bank
+where bb_id >= 100002;
 
 Update staff
 Set Phone = '955-712-4163'
