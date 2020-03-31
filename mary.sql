@@ -186,6 +186,11 @@ Where Staff_Id = 143141;
 Select * 
 From Donor Natural Join Blood;
 
+Select Staff.Staff_ID, blood_bank.bb_id
+From Staff
+LEFT OUTER JOIN blood_bank
+ON staff.Bank_ID = blood_bank.bb_id;
+
 Select Recipient.name as R_Name, Donor.name as D_Name
 From Recipient, Donor
 Where Recipient.donor_ID = Donor.Donor_ID;
