@@ -1,14 +1,19 @@
 CREATE TABLE donor (
-  `donor_ID` int(9) primary key,
-  `Name` varchar(25),
-  `Address` varchar(20),
-  `Phone Number` int(12),
-  `Medical Condition` varchar(50),
-  `Gender` char(10),
-  `DOB` varchar(10),
-  `Blood Type` char(6),
-  `bank_ID` int(9)
+  donor_ID int(9) primary key,
+  d_name varchar(25),
+  address varchar(20),
+  phone_num int(12),
+  med_cond varchar(50),
+  gender char(10),
+  dob varchar(10),
+  bank_id int(9),
+  blood  char(6)
 );
+
+
+select *
+from exam1.donor;
+drop table donor;
 
 CREATE TABLE staff (
   `staff_ID` int(9) primary key,
