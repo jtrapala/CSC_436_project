@@ -183,6 +183,10 @@ Update staff
 Set Phone = '955-712-4163'
 Where Staff_Id = 143141;
 
+Update recipient
+Set Medical_Condition = NULL
+Where Medical_Condition = 'Corona Virus';
+
 Select * 
 From Donor Natural Join Blood;
 
