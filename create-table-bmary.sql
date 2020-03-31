@@ -1,8 +1,9 @@
-
+CREATE DATABASE bloodBank;
+USE bloodBank;
 
 CREATE TABLE donor (
-  donor_id int(9) primary key,
-  d_name varchar(25),
+  donor_id int(9) primary key NOT NULL,
+  d_name varchar(25) NOT NULL,
   address varchar(20),
   phone_num int(12),
   med_cond varchar(50),
@@ -15,8 +16,8 @@ CREATE TABLE donor (
 
 
 CREATE TABLE staff (
-  staff_id int(9) primary key,
-  s_name varchar(25),
+  staff_id int(9) primary key NOT NULL,
+  s_name varchar(25) NOT NULL,
   address varchar(20),
   phone_num int(12),
   shift varchar(20),
@@ -39,8 +40,8 @@ CREATE TABLE blood (
 
 
 CREATE TABLE recipient (
-  recip_ID int(9) primary key,
-  r_name varchar(25),
+  recip_ID int(9) primary key NOT NULL,
+  r_name varchar(25) NOT NULL,
   address varchar(20),
   phone_num int(12),
   med_cond varchar(50),
@@ -54,7 +55,7 @@ CREATE TABLE recipient (
 
 
 CREATE TABLE blood_bank (
-  bb_id int(9) primary key,
+  bb_id int(9) primary key NOT NULL,
   bb_name varchar(25),
   address varchar(20),
   city varchar(20),
@@ -66,7 +67,7 @@ CREATE TABLE blood_bank (
 
 
 CREATE TABLE blood_drive (
-  bdrive_id int(9) primary key,
+  bdrive_id int(9) primary key NOT NULL,
   bd_name varchar(25),
   address varchar(20),
   city varchar(20),
