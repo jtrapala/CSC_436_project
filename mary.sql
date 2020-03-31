@@ -153,3 +153,21 @@ VALUES (103, 'Christopher Markus', NULL, '818-445-9088', 'Unkown Disease', 'M', 
 
 INSERT INTO recipient (recip_ID, Name, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)
 VALUES (104, 'Lance Jockerson', NULL, '912-556-8819', 'Ringworm', 'M', '06/20/85', 3, 'B-', 178215);
+
+Select name 
+from recipient
+where Urgency_status > 5;
+
+Select bb_id, d_name
+from blood_bank;
+
+Update staff
+Set Phone = '955-712-4163'
+Where Staff_Id = 143141;
+
+Select * 
+From Donor Natural Join Blood;
+
+Select Recipient.name as R_Name, Donor.name as D_Name
+From Recipient, Donor
+Where Recipient.donor_ID = Donor.Donor_ID;
