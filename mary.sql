@@ -181,6 +181,9 @@ Select bb_id, d_name
 from blood_bank
 where bb_id >= 100002;
 
+Select *
+From BBB;
+
 Update staff
 Set Phone = '955-712-4163'
 Where Staff_Id = 143141;
