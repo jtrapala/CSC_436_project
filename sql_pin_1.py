@@ -56,6 +56,7 @@ def upt(c):
 
 
 def adm_add(nm, users, c, conn):
+
     u = (nm, users[nm])
     c.execute('insert into admins values (?,?)', u)
     conn.commit()
