@@ -40,7 +40,7 @@ CREATE TABLE blood (
 
 
 CREATE TABLE recipient (
-  recip_ID int(9) primary key NOT NULL,
+  recip_id int(9) primary key NOT NULL,
   r_name varchar(25) NOT NULL,
   address varchar(20),
   phone_num int(12),
