@@ -190,6 +190,8 @@ Where Medical_Condition = 'Corona Virus';
 Select * 
 From Donor Natural Join Blood;
 
+Delete from blood_bank where bb_ID = 100005;
+
 Select Staff.Staff_ID, blood_bank.bb_id
 From Staff
 LEFT OUTER JOIN blood_bank
