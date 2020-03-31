@@ -19,10 +19,10 @@ CREATE TABLE staff (
   s_name varchar(25),
   address varchar(20),
   phone_num int(12),
-  Shift varchar(20),
-  Gender char(10),
-  DOB varchar(10),
-  bank_ID int(9)
+  shift varchar(20),
+  gender char(10),
+  dob varchar(10),
+  bank_id int(9)
 );
 
 
@@ -41,7 +41,7 @@ CREATE TABLE blood (
 CREATE TABLE recipient (
   recip_ID int(9) primary key,
   r_name varchar(25),
-  Address varchar(20),
+  address varchar(20),
   phone_num int(12),
   med_cond varchar(50),
   gender char(10),
@@ -54,7 +54,7 @@ CREATE TABLE recipient (
 
 
 CREATE TABLE blood_bank (
-  bb_ID int(9) primary key,
+  bb_id int(9) primary key,
   bb_name varchar(25),
   address varchar(20),
   city varchar(20),
@@ -66,14 +66,14 @@ CREATE TABLE blood_bank (
 
 
 CREATE TABLE blood_drive (
-  bdrive_ID int(9) primary key,
+  bdrive_id int(9) primary key,
   bd_name varchar(25),
   address varchar(20),
   city varchar(20),
   state varchar(15),
   phone_num int(12),
   descrpt varchar(1000),
-  bank_ID int(9)
+  bb_id int(9)
 );
 
 
