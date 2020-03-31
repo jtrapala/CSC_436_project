@@ -200,3 +200,6 @@ ON staff.Bank_ID = blood_bank.bb_id;
 Select Recipient.name as R_Name, Donor.name as D_Name
 From Recipient, Donor
 Where Recipient.donor_ID = Donor.Donor_ID;
+
+Delete From Staff
+Where Staff_ID = 143142;
