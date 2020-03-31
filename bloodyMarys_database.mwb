@@ -12,7 +12,7 @@ CREATE TABLE donor (
 
 
 select *
-from exam1.donor;
+from pres1.donor;
 drop table donor;
 
 
@@ -28,7 +28,7 @@ CREATE TABLE staff (
   bank_ID int(9)
 );
 
-select * from exam1.staff;
+select * from pres1.staff;
 drop table staff;
 
 CREATE TABLE blood (
@@ -40,7 +40,7 @@ CREATE TABLE blood (
   donor_id int(9)
 );
 
-select * from exam1.blood;
+select * from pres1.blood;
 drop table blood;
 
 CREATE TABLE recipient (
@@ -56,7 +56,7 @@ CREATE TABLE recipient (
   donor_id int(9)
 );
 
-select * from exam1.recipient;
+select * from pres1.recipient;
 drop table recipient;
 
 CREATE TABLE blood_bank (
@@ -69,7 +69,7 @@ CREATE TABLE blood_bank (
   admin_name varchar(25)
 );
 
-select * from exam1.blood_bank;
+select * from pres1.blood_bank;
 drop table blood_bank;
 
 CREATE TABLE blood_drive (
@@ -83,5 +83,5 @@ CREATE TABLE blood_drive (
   bank_ID int(9)
 );
 
-select * from exam1.blood_drive;
+select * from pres1.blood_drive;
 drop table blood_drive;
