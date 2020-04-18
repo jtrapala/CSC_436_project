@@ -1,4 +1,5 @@
 import numpy as np
+import json
 
 
 # Develop a program that takes as input:
@@ -38,44 +39,16 @@ def get_can_keys(r_attr, f_dep, r_cand_keys):
 # also dont print the unique ones from the second table, only the canidate keys from the second function
 # the superkeys are the unique values in the second table yes? no? but also maybe? but also doesnt matter for this assignment fair.
 
-# I forgot about the simplistic beauty that is python
-
-# I think we'll need to ask him more details on this tomorrow bc it's too vague
-
-# that sounds right to me, unless you want to make it more difficult which we could do, but I think what we have is fine
-# anything else?
-# I feel like, he's going to answer a lot of questionns tomorrow (nnot onnly ours
-# but also fo others), and that's going to help us get more clarity in a way
-
-# fair enough, so shall we continue after the lecture tomorrow? 411 is going to be a problem slightly but I'll make it work.
-# dont forget to do the hw for this class too. Oh I haven't forgotten. I'm gonna get back to learning for this class in a bit then attempt the hw
-# I'm down to but i have a class at 2 and 411's design doc
-# same, but we'll figure it out!
-# must be nice to have a partner @troy
-# I started the homeowrk, it doesn't seem to difficult so far
-
 
 def main():
 
-    print("Enter the number of attributes in the relation")
-    r_sz = input()
+    with open('table.json') as table1:
+        table1_dict = json.load(table1)
 
-    r_attr = []
-    print("Enter the attributes in the relation")
-    for i in range(r_sz):
-        r_attr.append(np.array(input()))
-        print(r_attr[i])
+    print(table1_dict)
+    r_cand_keys = [1]
 
-    print("Enter the number of functional dependencies")
-    f_sz = input()
-    f_dep = []
-    for j in range(f_sz):
-        f_dep.append(np.array(input()))
-        print(r_attr[j])
-
-    r_cand_keys = []
-
-    get_can_keys(r_attr, f_dep, r_cand_keys)
+    # get_can_keys(table1_dict, f_dep, r_cand_keys)
 
     # Print candidate keys that were found
     for k in range(r_cand_keys):

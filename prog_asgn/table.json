@@ -1,0 +1,30 @@
+{
+    "id": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    "fname": [
+        "John",
+        "Jess",
+        "John",
+        "Amy",
+        "Laura"
+    ],
+    "lname": [
+        "Smith",
+        "West",
+        "Mist",
+        "Knox",
+        "Smith"
+    ],
+    "major": [
+        "CSC",
+        "MTH",
+        "ELE",
+        "ENG",
+        "BIO"
+    ]
+}
