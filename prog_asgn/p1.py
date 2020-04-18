@@ -12,20 +12,43 @@ import json
 #       candidate keys,(not the superkeys), of R based on F.
 
 # This function finds the candidate keys with the given inputs from main
-def get_can_keys(r_attr, f_dep, r_cand_keys):
+def get_can_keys(table, f_dep, r_cand_keys):
 
-    r_unique = []
-    for x in r_attr:
-        if x not in r_unique:
-            r_unique.append(x)
+    tbl = list(table.keys())
+    print("Attributes from table1:", tbl)
+    print(len(tbl))
 
+    p = 0
+
+    while p < len(tbl):
+        # print(p)
+        # Get all values assc with the attribute
+        attr_val = list(table[tbl[p]])
+        # print(attr_val)
+
+        # New list to keep track of unique values under that attribute
+        attr_unique = []
+
+        for x in attr_val:
+            if x not in attr_unique:
+                attr_unique.append(x)
+
+        print(attr_unique)
+
+        # if(len(attr_unique) < len(tbl)):
+        #   tbl.remove()
+
+        p += 1
+
+
+'''
     # Holds values that are the intersection of r's attributes and f_dep's attributes
     overlap_r_func = [value for value in r_attr if value in f_dep]
 
     # Array that holds candidate keys (r attributes that are unique)
     r_cand_keys = [val for val in overlap_r_func if val in r_unique]
+    '''
 
-    return r_cand_keys
 
 # i think it works like this
 # so two functions as if they were tables
@@ -45,14 +68,32 @@ def main():
     with open('table.json') as table1:
         table1_dict = json.load(table1)
 
-    print(table1_dict)
-    r_cand_keys = [1]
+    # print(table1_dict)
 
-    # get_can_keys(table1_dict, f_dep, r_cand_keys)
+    '''
+        For functional dependecy AB->CD, use 
+
+            f_dep = [['A','B'],['C','D']]
+
+        This will print out as:
+            
+            Checking functional dependency: ['A', 'B'] -> ['C', 'D']  
+    '''
+
+    # f_dep is a 2x2 multivalue array
+    f_dep = [['id', 'fname'], ['phone', 'address']]
+
+    print("Checking functional dependency:", f_dep[0], "->", f_dep[1])
+    # print(f_dep[1][1])
+
+    # Holds candidate keys
+    cand_keys = []
+
+    get_can_keys(table1_dict, f_dep, cand_keys)
 
     # Print candidate keys that were found
-    for k in range(r_cand_keys):
-        print(r_cand_keys[k])
+    # for k in range(r_cand_keys):
+    # print(r_cand_keys[k])
 
 
 if __name__ == "__main__":
