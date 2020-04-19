@@ -1,4 +1,4 @@
-# Find Candidate Keys 
+# Find Candidate Keys
 
 Group Members: Matt Pitman matt_pitman@my.uri.edu
                Troy Durand tsdurand@my.uri.edu
@@ -16,11 +16,13 @@ Group Members: Matt Pitman matt_pitman@my.uri.edu
 ## Example
 
 Using relational attributes $R(A,B,C,D,E,F)$ along with functional attributes:
+
 - $ABC -> DF$
 - $DEF -> ACE$
 - $D -> B$
 
 These functional dependencies are outlined in the find_ck.cpp file as:
+
 ```c
     std::vector<std::string> f1 = {"A", "B", "C"};
     std::vector<std::string> f1d = {"D", "F"};
