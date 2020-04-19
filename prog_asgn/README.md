@@ -1,14 +1,15 @@
 # Find Candidate Keys 
 
-Group Members: Matt Pitman
+Group Members: Matt Pitman ma
                Troy Durand tsdurand@my.uri.edu
                Hassan Bhatti hassan_bhatti@my.uri.edu
+               Jane Trapala jane_trapala@my.uri.edu
 
-## How to compile
+## How to Compile
 
     make find_ck
 
-## How to run
+## How to Run
 
     ./a.out A B C D E F
 
@@ -26,7 +27,7 @@ These functional dependencies are outlined in the find_ck.cpp file as:
 
     std::vector<std::string> f2 = {"D", "E", "F"};
     std::vector<std::string> f2d = {"A", "C", "E"};
-    
+
     std::vector<std::string> f3 = {"D"};
     std::vector<std::string> f3d = {"B"};
 ```
