@@ -45,6 +45,9 @@ int main(int argc, char *argv[])
 {
     std::string rep;
     std::vector<std::string> R;
+
+    std::vector<std::vector<std::string>> f_deps;
+
     for (int i = 1; i < argc; i++)
     {
         rep = argv[i];
@@ -59,8 +62,10 @@ int main(int argc, char *argv[])
 
     std::vector<std::string> f1 = {"A", "B", "C"};
     std::vector<std::string> f1d = {"D", "F"};
+
     std::vector<std::string> f2 = {"D", "E", "F"};
     std::vector<std::string> f2d = {"A", "C", "E"};
+
     std::vector<std::string> f3 = {"D"};
     std::vector<std::string> f3d = {"B"};
 
