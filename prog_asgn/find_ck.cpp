@@ -8,11 +8,12 @@
 
 void findKeys(std::vector<std::string> f1, std::vector<std::string> f1d, std::vector<std::string> R)
 {
-    std::vector<std::string> dep;
     std::vector<std::string> key;
+    std::vector<std::string> dep;
     for (int i = 0; i < (int)f1.size(); i++)
     {
         dep.push_back(f1[i]);
+        key.push_back(f1[i]);
     }
     for (int i = 0; i < (int)f1d.size(); i++)
     {
@@ -57,14 +58,13 @@ int main(int argc, char *argv[])
     std::vector<std::string> f3d = {"A", "F"};*/
 
     std::vector<std::string> f1 = {"A", "B", "C"};
-    std::vector<std::string> f1d = {"D"
-                                    "F"};
+    std::vector<std::string> f1d = {"D", "F"};
     std::vector<std::string> f2 = {"D", "E", "F"};
     std::vector<std::string> f2d = {"A", "C", "E"};
     std::vector<std::string> f3 = {"D"};
     std::vector<std::string> f3d = {"B"};
 
-    std::cout << "Canidate Keys:" << std::endl;
+    std::cout << "Candidate Keys:" << std::endl;
     findKeys(f1, f1d, R);
     findKeys(f2, f2d, R);
     findKeys(f3, f3d, R);
