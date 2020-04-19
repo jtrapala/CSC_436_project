@@ -5,7 +5,7 @@ FLAGS=-std=c++11 -Wall -Wextra
 	$(CXX) $(FLAGS) $^ && ./a.out
 
 find_ck: find_ck.cpp 
-	$(CXX) $(FLAGS) $^ && ./a.out
+	$(CXX) $(FLAGS) $^ && ./a.out A B C D E F
 
 
 .PHONY: clean

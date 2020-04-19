@@ -49,12 +49,20 @@ int main(int argc, char *argv[])
         rep = argv[i];
         R.push_back(rep);
     }
-    std::vector<std::string> f1 = {"A", "B", "C"};
+    /*std::vector<std::string> f1 = {"A", "B", "C"};
     std::vector<std::string> f1d = {"E"};
     std::vector<std::string> f2 = {"A"};
     std::vector<std::string> f2d = {"F"};
     std::vector<std::string> f3 = {"D", "E"};
-    std::vector<std::string> f3d = {"A", "F"};
+    std::vector<std::string> f3d = {"A", "F"};*/
+
+    std::vector<std::string> f1 = {"A", "B", "C"};
+    std::vector<std::string> f1d = {"D"
+                                    "F"};
+    std::vector<std::string> f2 = {"D", "E", "F"};
+    std::vector<std::string> f2d = {"A", "C", "E"};
+    std::vector<std::string> f3 = {"D"};
+    std::vector<std::string> f3d = {"B"};
 
     std::cout << "Canidate Keys:" << std::endl;
     findKeys(f1, f1d, R);
