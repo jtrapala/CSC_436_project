@@ -11,9 +11,10 @@ import json
 #   1 - Find and print out the list of all possible
 #       candidate keys,(not the superkeys), of R based on F.
 
-# This function finds the candidate keys with the given inputs from main
-def get_can_keys(table, f_dep, r_cand_keys):
+# (Not correct?) This function finds the candidate keys with the given inputs from main
+def test_get_can_keys(table, f_dep, r_cand_keys):
 
+    # Make a list of keys from the table dictionary
     tbl = list(table.keys())
     print("Attributes from table1:", tbl)
     print(len(tbl))
@@ -63,33 +64,115 @@ def get_can_keys(table, f_dep, r_cand_keys):
 # the superkeys are the unique values in the second table yes? no? but also maybe? but also doesnt matter for this assignment fair.
 
 
+# Reference used:
+# https://www.geeksforgeeks.org/finding-attribute-closure-and-candidate-keys-using-functional-dependencies/
+# https://stackoverflow.com/questions/2718420/candidate-keys-from-functional-dependencies
+# https://cs.stackexchange.com/questions/109975/find-candidate-keys-given-functional-dependencies
+# this seems helpful https://opentextbc.ca/dbdesign01/chapter/chapter-12-normalization/
+
+def get_can_keys(r_attr, f_dep, cand_keys):
+    print("help pls")
+
+    '''print(f_dep[0][0][0])
+
+    print(len(f_dep))  # total
+    print(f_dep[0])  #
+    print(f_dep[0][0])
+    for u in range(len(r_attr)):
+        if r_attr[u] not in f_left:
+            cand_keys.append(r_attr[u])
+
+    # print(cand_keys)'''
+
+
+def right_side(f_dep, flg):
+    f_right = []
+
+    for p in range(len(f_dep)):
+        if(flg == 1):
+            if (f_dep[p][0] not in f_right):
+                f_right.append(f_dep[p][1])
+        else:
+            f_right.append(f_dep[p][1])
+    if(flg == 1):
+        print("Right unique side:", f_right)
+    else:
+        print("Right side:", f_right)
+    return f_right
+
+
+def left_side(f_dep, flg):
+    f_left = []
+
+    for p in range(len(f_dep)):
+        if(flg == 1):
+            if(f_dep[p][0] not in f_left):
+                f_left.append(f_dep[p][0])
+        else:
+            f_left.append(f_dep[p][0])
+    if(flg == 1):
+        print("Left unique side:", f_left)
+    else:
+        print("Left side:", f_left)
+
+    return f_left
+
+
+def no_side(r_attr, left_fdep, right_fdep):
+
+    non = []
+
+    print(left_fdep[0])
+    for p in range(len(r_attr)):
+        # Assume left side and right side are same length
+
+        if ((r_attr[p] not in left_fdep[i]) and (r_attr[p] not in right_fdep[i])):
+            non.append(r_attr[p])
+    print("No side:", non)
+    return non
+
+
 def main():
 
-    with open('table.json') as table1:
-        table1_dict = json.load(table1)
+    # with open('table.json') as table1:
+    #   table1_dict = json.load(table1)
 
     # print(table1_dict)
-
     '''
-        For functional dependecy AB->CD, use 
+        For functional dependecy AB->CD, use
 
             f_dep = [['A','B'],['C','D']]
 
         This will print out as:
-            
-            Checking functional dependency: ['A', 'B'] -> ['C', 'D']  
+
+            Checking functional dependency: ['A', 'B'] -> ['C', 'D']
     '''
 
-    # f_dep is a 2x2 multivalue array
-    f_dep = [['id', 'fname'], ['phone', 'address']]
+    r_attr = ['A', 'B', 'C', 'D', 'E', 'F']
 
-    print("Checking functional dependency:", f_dep[0], "->", f_dep[1])
-    # print(f_dep[1][1])
+    # f_dep is a 3x2 multivalue array
+    f_dep = [[['A', 'B', 'C'], ['D', 'F']],
+             [['D', 'E', 'F'], ['A', 'C', 'E']],
+             [['D'], ['B']]
+             ]
+
+    # print("Checking functional dependency:", f_dep[0][0], "->", f_dep[0][1])
+
+    # Both right and left sides will be filled with unique values
+    # Get left side of functional dependency
+    left_fdep_unique = left_side(f_dep, 1)
+    left_fdep = left_side(f_dep, 0)
+    # Get right side of functional dependency
+    right_fdep_unique = right_side(f_dep, 1)
+    right_fdep = right_side(f_dep, 0)
+
+    # Get attributes that are not in the leftside or rightside list (non-unique lists)
+    non = no_side(r_attr, left_fdep_unique, right_fdep_unique)
 
     # Holds candidate keys
     cand_keys = []
 
-    get_can_keys(table1_dict, f_dep, cand_keys)
+    get_can_keys(r_attr, f_dep, cand_keys)
 
     # Print candidate keys that were found
     # for k in range(r_cand_keys):
