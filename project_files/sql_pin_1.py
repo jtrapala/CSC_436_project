@@ -25,11 +25,11 @@ def start_c2(conn):
 # Creates admin table
 
 
-def adt(c):
+def get_donors(c):
 
     # get the count of tables with the name
     c.execute(
-        ''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='admins' ''')
+        ''' SELECT * FROM sqlite_master WHERE type='table' AND name='admins' ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""
@@ -42,10 +42,10 @@ def adt(c):
 # Creates user/pin/time table
 
 
-def upt(c):
+def get_recipients(c):
 
     c.execute(
-        ''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='users_pin' ''')
+        ''' SELECT * FROM sqlite_master WHERE type='table' AND name='users_pin' ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""create table users_pin(
