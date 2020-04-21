@@ -66,7 +66,7 @@ def buttonHandler(arg1):
             print("Incorrect attribute size")
         else:
             # Add pin entry to record database
-            #db.donor_add(new_entry2, c, conn)
+            db.donor_add(new_entry2, c, conn)
             db.see_donors(c)
             #records(root,conn)
         # Deletes the number array on an ENTER
@@ -81,7 +81,7 @@ def buttonHandler(arg1):
             print("Incorrect attribute size")
         else:
             # Add pin entry to record database
-            #db.donor_add(new_entry2, c, conn)
+            db.recp_add(new_entry3, c, conn)
             db.see_recps(c)
             #records(root,conn)
         # Deletes the number array on an ENTER
@@ -96,11 +96,18 @@ def buttonHandler(arg1):
             print("Incorrect attribute size")
         else:
             # Add pin entry to record database
-            #db.donor_add(new_entry2, c, conn)
+            db.staff_add(new_entry4, c, conn)
             db.see_staff(c)
             #records(root,conn)
         # Deletes the number array on an ENTER
             del new_entry4[:]
+    if arg1 == "view":
+        print("Viewing all tables")
+        db.see_bbanks(c)
+        db.see_inv(c)
+        db.see_donors(c)
+        db.see_recps(c)
+        db.see_staff(c)
     
 
 def buttonHandler_a(event, argument1):
@@ -227,6 +234,11 @@ add_staff_button.bind("<Return>", lambda event,
                       arg1="staff": buttonHandler_a(event, arg1))
 add_staff_button.grid(row=4, column=2, sticky=W)
 
+
+add_view_all = Button(data_entry_frame, text="View Tables",command=lambda arg1="view": buttonHandler("view"))
+add_view_all.bind("<Return>", lambda event,
+                      arg1="view": buttonHandler_a(event, arg1))
+add_view_all.grid(row=5, column=4)
 
 # Blood Section
 

@@ -285,7 +285,7 @@ def see_donors(c):
 
 def see_recps(c):
     print("---------------RECIPIENTS------------------------")
-    c.execute('''SELECT * FROM recipients;''')
+    c.execute('''SELECT * FROM recipient;''')
     for row in c.fetchall():
             print(row)
     print("\n")
