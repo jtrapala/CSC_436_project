@@ -47,19 +47,19 @@ print("Bloody Mary's Blood Bank Database is now open for use\n")
 # Get all tables, or make them if they don't exist
 #Blood banks
 db.get_bloodbanks(c)
-db.see_bbanks(c)
+#db.see_bbanks(c)
 #Blood inventory
 db.get_blood_inv(c)
-db.see_inv(c)
+#db.see_inv(c)
 #Staff
 db.get_staff(c)
-db.see_staff(c)
+#db.see_staff(c)
 # Donors
 db.get_donors(c)
-db.see_donors(c)
+#db.see_donors(c)
 #
 db.get_recps(c)
-db.see_recps(c)
+#db.see_recps(c)
 
 
 # gets called when the quit button is hit on the gui
@@ -228,27 +228,27 @@ button9 = tkinter.Button(master, text="Add", font=m_font, bg="green",
                          command=lambda arg1="ENTER": buttonHandler("ENTER"))
 button9.bind("<Return>", lambda event,
              arg1="ENTER": buttonHandler_a(event, arg1))
-button9.grid(row=5, column=0, columndban=3)
+button9.grid(row=5, column=0)
 
 button10 = tkinter.Button(master, text="Delete", font=m_font, bg="gold",
                           command=lambda arg1="CLEAR": buttonHandler("CLEAR"))
 button10.bind("<Return>", lambda event,
               arg1="CLEAR": buttonHandler_a(event, arg1))
-button10.grid(row=6, column=0, columndban=3)
+button10.grid(row=6, column=0)
 
 quitButton = tkinter.Button(master, text="QUIT", font=m_font,
                             bg="orange red", command=destroy)
-quitButton.grid(row=7, column=0, columndban=3)
+quitButton.grid(row=7, column=0)
 
 ##################################################For accessing settings###
 s_button = tkinter.Button(master, text="Staff Login",
                           command=lambda arg1="ADMIN": buttonHandler("SET"))
 s_button.bind("<Return>", lambda event,
               arg1="ADMIN": buttonHandler_a(event, arg1))
-s_button.grid(row=8, column=0, columndban=3, pady=15)
+s_button.grid(row=8, column=0, pady=15)
 
 # For didblaying PIN in the window
 text = tkinter.Text(master, height=2, width=12)
-text.grid(row=1, column=0, columndban=3)
+text.grid(row=1, column=0)
 
 tkinter.mainloop()
