@@ -163,17 +163,60 @@ def get_recps(c):
   unique(recip_ID),
   foreign key (donor_ID)
 	references donor(Donor_ID)
-    	on update cascade on delete cascade 
+    	on update cascade on delete cascade
 );""")
         }
 
 
 # def populate_dtb(c):
 
+# INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)
+def bbank_add(nm, users, c, conn):
+    val = (nm, users[nm])
+    qry = "INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    c.execute(qry, val)
+    conn.commit()
+# INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
+
+
+def bdrive_add(nm, users, c, conn):
+    val = (nm, users[nm])
+    qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    c.execute(qry, val)
+    conn.commit()
+# INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)
+
+
+def inv_add(nm, users, c, conn):
+    val = (nm, users[nm])
+    qry = "INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)VALUES ( % s, % s, % s, % s, % s, % s, % s, % s, % s)"
+    c.execute(qry, val)
+    conn.commit()
+# INSERT INTO staff(Staff_ID, sname, Address, Phone, Shift, Gender, DOB, Bank_ID)
+
+
+def staff_add(nm, users, c, conn):
+    val = (nm, users[nm])
+    qry = "INSERT INTO staff(Staff_ID, Name, Address, Phone, Shift, Gender, DOB, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    c.execute(qry, val)
+    conn.commit()
+
+# INSERT INTO Donor (Donor_ID, dname, Address, Phone_Number, Medical_Condition, Gender, DOB, Blood_Type, Bank_ID)
+
 
 def donor_add(nm, users, c, conn):
-    u = (nm, users[nm])
-    c.execute('insert into donor values (?,?)', u)
+    val = (nm, users[nm])
+    qry = "INSERT INTO donor(Donor_ID, dname, Address, Phone_Number, Medical_Condition, Gender, DOB, Blood_Type, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    c.execute(qry, val)
+    conn.commit()
+
+# INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)
+
+
+def recp_add(nm, users, c, conn):
+    val = (nm, users[nm])
+    qry = "INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    c.execute(qry, val)
     conn.commit()
 
 
@@ -197,9 +240,10 @@ def see_bbanks(c):
         else:
             continue
     print("\n")
-	
+
+
 def see_drives(c):
-	# from PINCode_1 import conn,c
+    # from PINCode_1 import conn,c
     # Print USERS
     print("---------------BLOOD DRIVES------------------------")
     for row in c.execute('SELECT * FROM blood_drive'):
@@ -221,6 +265,7 @@ def see_inv(c):
         else:
             continue
     print("\n")
+
 
 def see_staff(c):
 
