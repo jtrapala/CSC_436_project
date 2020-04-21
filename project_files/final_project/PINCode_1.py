@@ -15,16 +15,16 @@ from tkinter.ttk import *
 import hashlib
 #import sqlite3 as lite
 # from
-import sql_pin_1 as sp
+import dtb_mysql_backend as db
 
 global users, number, code, nm, sql_name, conn, c
 
 # Get connection going
 #conn = lite.connect('pin_dtb.db', timeout=120)
-conn = sp.start_c1()
+conn = db.start_c1()
 
 # Get cursor
-c = sp.start_c2(conn)
+c = db.start_c2(conn)
 
 # Blank number array for code
 number = []
@@ -39,24 +39,22 @@ e2 = Entry
 
 
 # KNOWN PINS
-#sp.kn_pin(c, code, conn)
+#db.kn_pin(c, code, conn)
 
 
-print("PIN Database is now open for use\n")
+print("Bloody Mary's Blood Bank Database is now open for use\n")
 
-sp.adt(c)
-sp.upt(c)
-#sp.adm_add(nm, users, c, conn)
-
-# Print admin table
-sp.db_upr(c)
-# Print pin entry table
-sp.db_ppr(c)
+# Get all tables, or make them if they don't exist
+db.get_bloodbanks(c)
+db.get_blood_inv(c)
+db.get_staff(c)
+db.get_donors(c)
+db.get_recps(c)
 
 
 # gets called when the quit button is hit on the gui
 def destroy():
-    sp.db_close(conn)
+    db.db_close(conn)
     master.destroy()
 
 
@@ -110,7 +108,7 @@ def buttonHandler(arg1):
             else:
                 print("Incorrect")
                 #
-                sp.unk_pin(c, code, conn)
+                db.unk_pin(c, code, conn)
 
                 # Add pin entry to record database
 
@@ -138,8 +136,8 @@ def buttonHandler(arg1):
         Label(u_pw, text="Password").grid(row=1, column=1)
         e1 = Entry(u_pw)
         e2 = Entry(u_pw)
-        e1.grid(row=0, column=3, rowspan=1)
-        e2.grid(row=1, column=3, rowspan=1)
+        e1.grid(row=0, column=3, rowdban=1)
+        e2.grid(row=1, column=3, rowdban=1)
     # User/Pass Submit
         u_bt = Button(u_pw, text="SUBMIT",
                       command=lambda arg1="SUBMIT": adminSubmit("SUBMIT"))
@@ -159,7 +157,7 @@ def buttonHandler(arg1):
                 pas = e2.get()
                 users[user] = hashlib.md5(pas).hexdigest()
                 print(users)
-                sp.dtb_del(conn, c)
+                db.dtb_del(conn, c)
                 print("Database cleared")
 
                 del number[:]
@@ -173,21 +171,23 @@ def buttonHandler_a(event, argument1):
     # adminSubmit(argument1)
 
 # on change dropdown value
+
+
 def change_dropdown(*args):
-    print( variable.get() )
-# sp.web_p()
+    print(variable.get())
+# db.web_p()
 
 
 master = tkinter.Tk()
-style=tkinter.ttk.Style()
+style = tkinter.ttk.Style()
 style.configure("BW.TLabel", foreground="black", background="white")
 master.title("Enter the 4 digit PIN")
 variable = tkinter.StringVar(master)
 variable.set("Donor")
 # Dropdown
-person={'Donor','Recipient'}
-popupMenu = tkinter.ttk.OptionMenu(master,variable, *person)
-popupMenu.grid(row = 2, column =15)
+person = {'Donor', 'Recipient'}
+popupMenu = tkinter.ttk.OptionMenu(master, variable, *person)
+popupMenu.grid(row=2, column=15)
 
 
 # link function to change dropdown
@@ -198,47 +198,47 @@ bt_font = tkinter.font.Font(family='Arial', size=16, weight=tkinter.font.BOLD)
 m_font = tkinter.font.Font(family='Arial', size=12, weight=tkinter.font.BOLD)
 # SO MANY BUTTONS    ###########################################First Row
 button = tkinter.Button(master, text="1", font=bt_font,
-                command=lambda arg1="1": buttonHandler(1))
+                        command=lambda arg1="1": buttonHandler(1))
 button.bind("<Return>", lambda event, arg1="1": buttonHandler_a(event, arg1))
 button.grid(row=2, column=0)
 
 button2 = tkinter.Button(master, text="2", font=bt_font,
-                 command=lambda arg1="2": buttonHandler(2))
+                         command=lambda arg1="2": buttonHandler(2))
 button2.bind("<Return>", lambda event, arg1="2": buttonHandler_a(event, arg1))
 button2.grid(row=2, column=1)
 
 button3 = tkinter.Button(master, text="3", font=bt_font,
-                 command=lambda arg1="3": buttonHandler(3))
+                         command=lambda arg1="3": buttonHandler(3))
 button3.bind("<Return>", lambda event, arg1="3": buttonHandler_a(event, arg1))
 button3.grid(row=2, column=2)
 
 
 # Function Keys
 button9 = tkinter.Button(master, text="Add", font=m_font, bg="green",
-                 command=lambda arg1="ENTER": buttonHandler("ENTER"))
+                         command=lambda arg1="ENTER": buttonHandler("ENTER"))
 button9.bind("<Return>", lambda event,
              arg1="ENTER": buttonHandler_a(event, arg1))
-button9.grid(row=5, column=0, columnspan=3)
+button9.grid(row=5, column=0, columndban=3)
 
 button10 = tkinter.Button(master, text="Delete", font=m_font, bg="gold",
-                  command=lambda arg1="CLEAR": buttonHandler("CLEAR"))
+                          command=lambda arg1="CLEAR": buttonHandler("CLEAR"))
 button10.bind("<Return>", lambda event,
               arg1="CLEAR": buttonHandler_a(event, arg1))
-button10.grid(row=6, column=0, columnspan=3)
+button10.grid(row=6, column=0, columndban=3)
 
 quitButton = tkinter.Button(master, text="QUIT", font=m_font,
-                    bg="orange red", command=destroy)
-quitButton.grid(row=7, column=0, columnspan=3)
+                            bg="orange red", command=destroy)
+quitButton.grid(row=7, column=0, columndban=3)
 
 ##################################################For accessing settings###
 s_button = tkinter.Button(master, text="Staff Login",
-                  command=lambda arg1="ADMIN": buttonHandler("SET"))
+                          command=lambda arg1="ADMIN": buttonHandler("SET"))
 s_button.bind("<Return>", lambda event,
               arg1="ADMIN": buttonHandler_a(event, arg1))
-s_button.grid(row=8, column=0, columnspan=3, pady=15)
+s_button.grid(row=8, column=0, columndban=3, pady=15)
 
-# For displaying PIN in the window
+# For didblaying PIN in the window
 text = tkinter.Text(master, height=2, width=12)
-text.grid(row=1, column=0, columnspan=3)
+text.grid(row=1, column=0, columndban=3)
 
 tkinter.mainloop()

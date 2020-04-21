@@ -5,7 +5,7 @@ It creates a database for donors, recipients, staff, blood types, and ...
 '''
 # import flask
 # import sqlite3 as lite
-import mysql
+import mysql.connector as mysql
 import datetime
 # import os
 # from sqlite3 import Error
@@ -19,7 +19,7 @@ def start_c1():
     conn = mysql.connect(host="localhost",
                          user="root",
                          passwd="rexoatie45",
-                         database="bloodbank")
+                         database="BloodBank")
     return conn
 
 
@@ -33,7 +33,7 @@ def get_bloodbanks(c):
 
     # get the count of tables with the name
     c.execute(
-        ''' SELECT * FROM bloodbank WHERE type='table' AND name='blood_bank'; ''')
+        ''' SELECT * FROM BloodBank WHERE type='table' AND name='blood_bank'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""
@@ -143,11 +143,10 @@ def get_recps(c):
         }
 
 
-def populate_dtb(c):
+#def populate_dtb(c):
 
 
 def donor_add(nm, users, c, conn):
-
     u = (nm, users[nm])
     c.execute('insert into donor values (?,?)', u)
     conn.commit()
