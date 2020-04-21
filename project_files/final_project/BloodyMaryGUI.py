@@ -82,10 +82,10 @@ def buttonHandler(arg1):
         else:
             # Add pin entry to record database
             #db.donor_add(new_entry2, c, conn)
-            db.see_donors(c)
+            db.see_recps(c)
             #records(root,conn)
         # Deletes the number array on an ENTER
-            del new_entry2[:]
+            del new_entry3[:]
     if arg1 == "staff":
         e = add_staff_entry.get()
         print("Entry:",e)
@@ -97,10 +97,10 @@ def buttonHandler(arg1):
         else:
             # Add pin entry to record database
             #db.donor_add(new_entry2, c, conn)
-            db.see_donors(c)
+            db.see_staff(c)
             #records(root,conn)
         # Deletes the number array on an ENTER
-            del new_entry2[:]
+            del new_entry4[:]
     
 
 def buttonHandler_a(event, argument1):
