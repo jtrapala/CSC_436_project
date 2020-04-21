@@ -160,23 +160,6 @@ def buttonHandler(arg1):
                   arg1="SUBMIT": buttonHandler_b(event, arg1))
         u_bt.grid(row=2, column=1)
 
-        def buttonHandler_b(event, argument1):
-            # print event
-            adminSubmit(argument1)
-
-# Stores the entered username and hashed password in a dictionary in
-# another window, clears on submit
-        def adminSubmit(arg1):
-            if arg1 is "SUBMIT":
-                user = e1.get()
-                pas = e2.get()
-                users[user] = hashlib.md5(pas).hexdigest()
-                print(users)
-                db.dtb_del(conn, c)
-                print("Database cleared")
-
-                del number[:]
-            u_pw.destroy()  # Exit the admin window
 
 
 # Handles the button click event and argument passed

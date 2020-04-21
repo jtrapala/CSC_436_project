@@ -208,8 +208,8 @@ def staff_add(nm, users, c, conn):
 # INSERT INTO Donor (Donor_ID, dname, Address, Phone_Number, Medical_Condition, Gender, DOB, Blood_Type, Bank_ID)
 
 
-def donor_add(nm, users, c, conn):
-    val = (nm, users[nm])
+def donor_add(entry, c, conn):
+    val = (entry[0],entry[1],entry[2],entry[3],entry[4],entry[5],entry[6],entry[7],entry[8])
     qry = "INSERT INTO donor(Donor_ID, dname, Address, Phone_Number, Medical_Condition, Gender, DOB, Blood_Type, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -285,15 +285,9 @@ def see_staff(c):
 
 def see_donors(c):
     print("---------------DONORS------------------------")
-    c.execute('SELECT count(*) FROM donor')
-    result = c.fetchall()
-    print(result)
-    if result is not 0:
-        for row in c.execute('SELECT * FROM donor'):
+    for row in c.execute('SELECT * FROM donor'):
             print(row)
-        print("\n")
-    else:
-        print("")
+    print("\n")
 
 
 def see_recps(c):

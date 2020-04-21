@@ -1,7 +1,7 @@
-import mysql.connector
+import mysql.connector as mysql
 from tkinter import *
 import tkinter.font
-import test_pure_front
+from test_pure_front import records
 import dtb_mysql_backend as db
 
 global conn, c
@@ -9,27 +9,31 @@ global conn, c
 '''BMDB = mysql.connector.connect(
     host="localhost",
     user="root",
-    #passwd = "URIallinone2020!",
-    #database = "testdb",
+    # passwd = "URIallinone2020!",
+    # database = "testdb",
     passwd="rexoatie45",
     database="BloodBank",
 )'''
 
+new_entry1 = Entry
+new_entry2 = Entry
+
+
 # Get connection going
-#conn = lite.connect('pin_dtb.db', timeout=120)
+# conn = lite.connect('pin_dtb.db', timeout=120)
 conn = db.start_c1()
 
 # Get cursor
 c = db.start_c2(conn)
 
-# db.see_donors(c)
+#db.see_donors(c)
 
 # gets called when the quit button is hit on the gui
 
 
 def destroy():
     db.db_close(conn)
-    master.destroy()
+    root.destroy()
 
 
 def buttonHandler(arg1):
@@ -37,12 +41,12 @@ def buttonHandler(arg1):
     # Use enter function
     print("Add entry: ", arg1)
     # print number
-    if arg1 is "blood_drive":
+    if arg1 == "blood_drive":
         new_entry1 = [int(x)
-                      for x in add_blood_drive_entry.get().split(', ')]
-
+                      for x in add_blood_drive_entry.get().split(',')]
+        print(new_entry1)
         # Checks if the number length is <4, if it is, tell the user
-        if len(new_entry1) is not 7:
+        if len(new_entry1) != 7:
             print("Incorrect attribute size")
         else:
             # Add pin entry to record database
@@ -51,59 +55,24 @@ def buttonHandler(arg1):
         # Deletes the number array on an ENTER
         del new_entry1[:]
 
-        if arg1 is "donor":
-            new_entry2 = [int(x)
-                          for x in add_donor_entry.get().split(', ')]
-
+    if arg1 == "donor":
+        e = add_donor_entry.get()
+        print(e)
+        new_entry2=list(e.split(', '))
+        print(new_entry2)
         # Checks if the number length is <4, if it is, tell the user
-        if len(new_entry2) is not 7:
+        if len(new_entry2) != 9:
             print("Incorrect attribute size")
         else:
             # Add pin entry to record database
-            db.donor_add(new_entry2, c, conn)
-            db.see_donors(c)
-
+            #db.donor_add(new_entry2, c, conn)
+            #db.see_donors(c)
+            records(root,conn)
         # Deletes the number array on an ENTER
-        del new_entry2[:]
-
+            
     # If the settings button is pressed, then have username
     # and password prompt appear
 
-    if arg1 == "SET":
-        u_pw = Toplevel(master)
-        u_pw.title("Admin Settings Login Window")
-        Label(u_pw, text="Username").grid(row=0, column=1)
-        Label(u_pw, text="Password").grid(row=1, column=1)
-        e1 = Entry(u_pw)
-        e2 = Entry(u_pw)
-        e1.grid(row=0, column=3, rowdban=1)
-        e2.grid(row=1, column=3, rowdban=1)
-    # User/Pass Submit
-        u_bt = Button(u_pw, text="SUBMIT",
-                      command=lambda arg1="SUBMIT": adminSubmit("SUBMIT"))
-        u_bt.bind("<Return>", lambda event,
-                  arg1="SUBMIT": buttonHandler_b(event, arg1))
-        u_bt.grid(row=2, column=1)
-
-        def buttonHandler_b(event, argument1):
-            # print event
-            adminSubmit(argument1)
-
-# Stores the entered username and hashed password in a dictionary in
-# another window, clears on submit
-        def adminSubmit(arg1):
-            if arg1 is "SUBMIT":
-                user = e1.get()
-                pas = e2.get()
-                users[user] = hashlib.md5(pas).hexdigest()
-                print(users)
-                db.dtb_del(conn, c)
-                print("Database cleared")
-
-                del number[:]
-            u_pw.destroy()  # Exit the admin window
-
-# Handles the button click event and argument passed
 
 
 def buttonHandler_a(event, argument1):
@@ -123,6 +92,7 @@ root.title("Bloody Mary's Blood Bank")
 root.geometry("900x900")
 
 
+
 # Formating Materials
 # Underlying (Blood) Frame
 blood_frame = Frame(root, bg='dark red', bd=3)
@@ -140,10 +110,10 @@ data_display_frame.place(
     relx=0.5, rely=0.48, relwidth=0.9, relheight=0.45, anchor='n')
 
 data_display_label = Label(
-    data_display_frame, text="Work In Progress. Will display data requested from queries!")
+    data_display_frame)
 data_display_label.place(relwidth=1, relheight=1)
 
-
+'''
 # Display Label Function
 def format_data_display():
     try:
@@ -160,7 +130,7 @@ def format_data_display():
 
     return data
 
-
+'''
 # Data Manipulation Functions
 def fake_command():
     pass
@@ -204,7 +174,8 @@ add_blood_drive_button.grid(row=1, column=2, sticky=W)
 add_donor_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
 add_donor_entry.grid(row=2, column=1, padx=20, pady=10)
 
-add_donor_button = Button(data_entry_frame, text="Add Donor")
+add_donor_button = Button(data_entry_frame, text="Add Donor",
+                          command=lambda arg1="donor": buttonHandler("donor"))
 add_donor_button.bind("<Return>", lambda event,
                       arg1="donor": buttonHandler_a(event, arg1))
 add_donor_button.grid(row=2, column=2, sticky=W)
@@ -254,7 +225,7 @@ tables_menu.add_command(label="Recipients", command=fake_command)
 tables_menu.add_command(label="Staff", command=fake_command)
 
 # Status Bar
-#current_status = StringVar()
+# current_status = StringVar()
 # current_status.set("Waiting")
 
 my_status = Label(root, text="Running", bd=2,
