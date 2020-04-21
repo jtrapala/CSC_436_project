@@ -19,6 +19,7 @@ CREATE TABLE blood_drive (
   City varchar(20),
   State varchar(15),
   Phone varchar(14),
+  bd_desc varchar(40),
   bank_ID int(9),
   unique(bdrive_ID),
   foreign Key (bank_id)
@@ -103,16 +104,16 @@ VALUES ( 100004, 'Reds Blood Bank', '100 Darling St', 'Crowsville', 'NY', '515-8
 INSERT INTO b_bank (bb_ID, bb_name, address, city, state, phone, admin_name)
 VALUES ( 100005, 'Cooperstown Blood Bank', '77 Leapord Rd', 'Cooperstown', 'VT', '912-902-1142', 'Harper Smith');
 
-INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, Description, bank_id)
+INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
 VALUES ( 10, 'GetSome Blood', '14 Redrover Ln', 'Johnson', 'CT', '421-774-0082', 'Getting Peoples Blood', 100003);
 
-INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, Description, bank_id)
+INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
 VALUES ( 11, 'GetMore Blood', '7 Loop St', 'Johnson', 'CT', '421-774-0082', 'Getting More of Peoples Blood', 100003);
 
-INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, Description, bank_id)
+INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
 VALUES ( 12, 'Sucking Blood', '119 Taylor Ln', 'Cranston', 'RI', '401-572-9129', 'The more blood the better', 100001);
 
-INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, Description, bank_id)
+INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
 VALUES ( 13, 'URI Blood Drive', '50 Uppercollege Rd', 'Kingston', 'RI', '401-572-8892', 'College Kids Blood', 100002);
 
 INSERT INTO staff (Staff_ID, sname, Address, Phone, Shift, Gender, DOB, Bank_ID)
@@ -193,7 +194,7 @@ From Blood;
 Select *
 From Recipient;  
 
-Select name 
+Select rname 
 from recipient
 where Urgency_status > 5;
 
