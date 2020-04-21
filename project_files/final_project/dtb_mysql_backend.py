@@ -37,15 +37,39 @@ def get_bloodbanks(c):
     if c.fetchone()[0] == 0:
         {
             c.execute("""
-		    CREATE TABLE blood_bank (
+		    CREATE TABLE b_bank (
   bb_ID int(9) NOT NULL primary key,
-  d_name varchar(25) NOT NULL,
+  bb_name varchar(25) NOT NULL,
   address varchar(20),
   city varchar(20),
   state varchar(15),
   phone varchar(14),
   admin_Name varchar(25),
   unique(bb_ID)
+);""")
+        }
+
+
+def get_blood_drives(c):
+    # get the count of tables with the name
+    c.execute(
+        ''' SELECT * FROM bloodbank WHERE type='table' AND name='blood'; ''')
+    if c.fetchone()[0] == 0:
+        {
+            c.execute("""
+		    CREATE TABLE blood_drive (
+  bdrive_ID int(9) NOT NULL primary key,
+  bd_name varchar(25) NOT NULL,
+  Address varchar(20),
+  City varchar(20),
+  State varchar(15),
+  Phone varchar(14),
+  bd_desc varchar(40),
+  bank_ID int(9),
+  unique(bdrive_ID),
+  foreign Key (bank_id)
+	references b_bank(bb_ID)
+    	on update cascade on delete cascade
 );""")
         }
 
@@ -79,7 +103,7 @@ def get_staff(c):
         {
             c.execute("""	CREATE TABLE staff (
      Staff_ID int(9) NOT NULL primary key,
-    Name varchar(25) NOT NULL,
+    sname varchar(25) NOT NULL,
      Address varchar(20),
     Phone varchar(14),
   Shift varchar(20),
@@ -102,7 +126,7 @@ def get_donors(c):
         {
             c.execute("""CREATE TABLE donor (
   Donor_ID int(9) NOT NULL primary key,
-  Name varchar(25) NOT NULL,
+  dname varchar(25) NOT NULL,
   Address varchar(20),
   Phone_Number varchar(14),
   Medical_Condition varchar(50),
@@ -126,7 +150,7 @@ def get_recps(c):
         {
             c.execute("""CREATE TABLE recipient (
   recip_ID int(9) NOT NULL primary key,
-  Name varchar(25) NOT NULL,
+  rname varchar(25) NOT NULL,
   Address varchar(20),
   Phone_Number varchar(14),
   Medical_Condition varchar(50),
@@ -143,7 +167,7 @@ def get_recps(c):
         }
 
 
-#def populate_dtb(c):
+# def populate_dtb(c):
 
 
 def donor_add(nm, users, c, conn):
