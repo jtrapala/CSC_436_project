@@ -45,11 +45,21 @@ e2 = Entry
 print("Bloody Mary's Blood Bank Database is now open for use\n")
 
 # Get all tables, or make them if they don't exist
+#Blood banks
 db.get_bloodbanks(c)
+db.see_bbanks(c)
+#Blood inventory
 db.get_blood_inv(c)
+db.see_inv(c)
+#Staff
 db.get_staff(c)
+db.see_staff(c)
+# Donors
 db.get_donors(c)
+db.see_donors(c)
+#
 db.get_recps(c)
+db.see_recps(c)
 
 
 # gets called when the quit button is hit on the gui

@@ -33,8 +33,9 @@ def get_bloodbanks(c):
 
     # get the count of tables with the name
     c.execute(
-        ''' SELECT * FROM BloodBank WHERE type='table' AND name='blood_bank'; ''')
-    if c.fetchone()[0] == 0:
+        '''SHOW TABLES LIKE 'b_bank'; ''')
+    result = c.fetchone()
+    if result == 0:
         {
             c.execute("""
 		    CREATE TABLE b_bank (
@@ -53,7 +54,7 @@ def get_bloodbanks(c):
 def get_blood_drives(c):
     # get the count of tables with the name
     c.execute(
-        ''' SELECT * FROM bloodbank WHERE type='table' AND name='blood'; ''')
+        ''' SHOW TABLES LIKE 'blood_drive'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""
@@ -77,7 +78,7 @@ def get_blood_drives(c):
 def get_blood_inv(c):
     # get the count of tables with the name
     c.execute(
-        ''' SELECT * FROM bloodbank WHERE type='table' AND name='blood'; ''')
+        ''' SHOW TABLES LIKE 'blood'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""
@@ -98,7 +99,7 @@ def get_blood_inv(c):
 
 def get_staff(c):
     c.execute(
-        '''SELECT * FROM bloodbank WHERE type='table' AND name='donor'; ''')
+        '''SHOW TABLES LIKE 'staff'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""	CREATE TABLE staff (
@@ -121,7 +122,7 @@ def get_staff(c):
 def get_donors(c):
 
     c.execute(
-        '''SELECT * FROM bloodbank WHERE type='table' AND name='donor'; ''')
+        '''SHOW TABLES LIKE 'donor'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""CREATE TABLE donor (
@@ -145,7 +146,7 @@ def get_donors(c):
 def get_recps(c):
 
     c.execute(
-        '''SELECT * FROM bloodbank WHERE type='table' AND name='recipient'; ''')
+        '''SHOW TABLES LIKE 'recipient'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""CREATE TABLE recipient (
@@ -185,44 +186,75 @@ def unk_pin(c, code, conn):
     conn.commit()
 
 
-def db_see_bbanks(c):
+def see_bbanks(c):
     # from PINCode_1 import conn,c
     # Print USERS
     print("---------------BLOOD BANKS------------------------")
-    for row in c.execute('SELECT * FROM blood_bank'):
-        print(row)
+    for row in c.execute('SELECT * FROM b_bank'):
+        result = c.fetchone()
+        if result:
+            print(row)
+        else:
+            continue
+    print("\n")
+	
+def see_drives(c):
+	# from PINCode_1 import conn,c
+    # Print USERS
+    print("---------------BLOOD DRIVES------------------------")
+    for row in c.execute('SELECT * FROM blood_drive'):
+        result = c.fetchone()
+        if result:
+            print(row)
+        else:
+            continue
     print("\n")
 
 
-def db_see_inv(c):
+def see_inv(c):
 
     print("---------------BLOOD INVENTORY------------------------")
     for row in c.execute('SELECT * FROM blood'):
-        print(row)
+        result = c.fetchone()
+        if result:
+            print(row)
+        else:
+            continue
     print("\n")
 
-
-def db_see_staff(c):
+def see_staff(c):
 
     print("---------------STAFF------------------------")
     for row in c.execute('SELECT * FROM staff'):
-        print(row)
+        result = c.fetchone()
+        if result:
+            print(row)
+        else:
+            continue
     print("\n")
 
 
-def db_see_donors(c):
+def see_donors(c):
 
     print("---------------DONORS------------------------")
     for row in c.execute('SELECT * FROM donor'):
-        print(row)
+        result = c.fetchone()
+        if result:
+            print(row)
+        else:
+            continue
     print("\n")
 
 
-def db_see_recps(c):
+def see_recps(c):
 
     print("---------------RECIPIENTS------------------------")
     for row in c.execute('SELECT * FROM recipients'):
-        print(row)
+        result = c.fetchone()
+        if result:
+            print(row)
+        else:
+            continue
     print("\n")
 
 
