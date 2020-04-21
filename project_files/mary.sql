@@ -8,7 +8,8 @@ CREATE TABLE blood_bank (
   city varchar(20),
   state varchar(15),
   phone varchar(14),
-  admin_Name varchar(25)
+  admin_Name varchar(25),
+  unique(bb_ID)
 );
 
 CREATE TABLE blood_drive (
@@ -18,8 +19,11 @@ CREATE TABLE blood_drive (
   City varchar(20),
   State varchar(15),
   Phone varchar(14),
-  Description varchar(1000),
-  bank_ID int(9)
+  bank_ID int(9),
+  unique(bdrive_ID),
+  foreign Key (bank_id)
+	references blood_bank(bb_ID)
+    	on update cascade on delete cascade
 );
 
 CREATE TABLE staff (
@@ -30,7 +34,11 @@ CREATE TABLE staff (
   Shift varchar(20),
   Gender char(10),
   DOB varchar(10),
-  Bank_ID int(9)
+  Bank_ID int(9),
+  unique(Staff_ID),
+  foreign Key (Bank_ID)
+	references blood_bank(bb_ID)
+    	on update cascade on delete cascade
 );
 
 CREATE TABLE donor (
@@ -42,7 +50,11 @@ CREATE TABLE donor (
   Gender char(10),
   DOB varchar(10),
   Blood_Type char(6),
-  Bank_ID int(9)
+  Bank_ID int(9),
+  unique(Donor_ID),
+  foreign key (Bank_ID)
+	references blood_bank(bb_ID)
+	on update cascade on delete cascade
 );
 
 CREATE TABLE Blood (
@@ -51,7 +63,11 @@ CREATE TABLE Blood (
   Blood_Amount char(6),
   Haemoglobin_Content char(6),
   Double_Red char(6),
-  donor_ID int(9)
+  donor_ID int(9),
+  unique(Bloodbag_number),
+  foreign key (donor_ID)
+	references donor(Donor_ID)
+    	on update cascade on delete cascade
 );
 
 CREATE TABLE recipient (
@@ -64,8 +80,13 @@ CREATE TABLE recipient (
   DOB varchar(10),
   Urgency_Status int(1),
   Blood_Type char(6),
-  donor_ID numeric(9)
+  donor_ID int(9),
+  unique(recip_ID),
+  foreign key (donor_ID)
+	references donor(Donor_ID)
+    	on update cascade on delete cascade 
 );
+
 
 INSERT INTO blood_bank (bb_ID, d_name, address, city, state, phone, admin_name)
 VALUES ( 100001, 'RIC Blood Bank', '11 Sohier Rd', 'Wakefield', 'RI', '401-572-9128', 'Amy Volchire');
