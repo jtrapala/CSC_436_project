@@ -3,10 +3,10 @@ import tkinter
 import tkinter.font
 from tkinter import *
 from tkinter.ttk import *
-import mysql.connection as mysql
+import mysql.connector as mysql
 # from
 import dtb_mysql_backend as db
-import PINCode_1 as fdraft
+#import PINCode_1 as fdraft
 
 global users, number, code, nm, sql_name, conn, c
 
@@ -19,7 +19,7 @@ class records():
         self.master.title('Records')
         self.connection = mysql.connect('bloodbank.db')
         self.cur = self.connection.cursor()
-        self.dateLabel = Label(self.master, text="Date", width=10)
+        self.dateLabel = Label(self.master, text="DonorID", width=10)
         self.dateLabel.grid(row=0, column=0)
         self.BMILabel = Label(self.master, text="BMI", width=10)
         self.BMILabel.grid(row=0, column=1)

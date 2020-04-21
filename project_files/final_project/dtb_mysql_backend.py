@@ -18,6 +18,8 @@ global conn, c
 def start_c1():
     conn = mysql.connect(host="localhost",
                          user="root",
+                         # passwd = "URIallinone2020!",
+                         # database = "testdb",
                          passwd="rexoatie45",
                          database="BloodBank")
     return conn
@@ -171,16 +173,18 @@ def get_recps(c):
 # def populate_dtb(c):
 
 # INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)
-def bbank_add(nm, users, c, conn):
-    val = (nm, users[nm])
+def bbank_add(entry, c, conn):
+    val = (entry[0], entry[1], entry[2],
+           entry[3], entry[4], entry[5], entry[6])
     qry = "INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
 
 
-def bdrive_add(nm, users, c, conn):
-    val = (nm, users[nm])
+def bdrive_add(entry, c, conn):
+    val = (entry[0], entry[1], entry[2],
+           entry[3], entry[4], entry[5], entry[6])
     qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -280,19 +284,19 @@ def see_staff(c):
 
 
 def see_donors(c):
-
     print("---------------DONORS------------------------")
-    for row in c.execute('SELECT * FROM donor'):
-        result = c.fetchone()
-        if result:
+    c.execute('SELECT count(*) FROM donor')
+    result = c.fetchall()
+    print(result)
+    if result is not 0:
+        for row in c.execute('SELECT * FROM donor'):
             print(row)
-        else:
-            continue
-    print("\n")
+        print("\n")
+    else:
+        print("")
 
 
 def see_recps(c):
-
     print("---------------RECIPIENTS------------------------")
     for row in c.execute('SELECT * FROM recipients'):
         result = c.fetchone()
