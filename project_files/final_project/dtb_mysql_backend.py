@@ -241,7 +241,7 @@ def see_bbanks(c):
     # from PINCode_1 import conn,c
     # Print USERS
     print("---------------BLOOD BANKS------------------------")
-    c.execute('''SELECT * FROM b_bank;'''):
+    c.execute('''SELECT * FROM b_bank;''')
     for row in c.fetchall():
             print(row)
     print("\n")
@@ -251,7 +251,7 @@ def see_drives(c):
     # from PINCode_1 import conn,c
     # Print USERS
     print("---------------BLOOD DRIVES------------------------")
-    c.execute('''SELECT * FROM blood_drive;'''):
+    c.execute('''SELECT * FROM blood_drive;''')
     for row in c.fetchall():
             print(row)
     print("\n")
@@ -260,7 +260,7 @@ def see_drives(c):
 def see_inv(c):
 
     print("---------------BLOOD INVENTORY------------------------")
-    c.execute('''SELECT * FROM blood;'''):
+    c.execute('''SELECT * FROM blood;''')
     for row in c.fetchall():
             print(row)
     print("\n")
@@ -269,7 +269,7 @@ def see_inv(c):
 def see_staff(c):
 
     print("---------------STAFF------------------------")
-    c.execute('''SELECT * FROM staff;'''):
+    c.execute('''SELECT * FROM staff;''')
     for row in c.fetchall():
             print(row)
     print("\n")
@@ -285,7 +285,7 @@ def see_donors(c):
 
 def see_recps(c):
     print("---------------RECIPIENTS------------------------")
-    c.execute('''SELECT * FROM recipients;'''):
+    c.execute('''SELECT * FROM recipients;''')
     for row in c.fetchall():
             print(row)
     print("\n")
