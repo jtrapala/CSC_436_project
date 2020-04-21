@@ -176,7 +176,7 @@ def get_recps(c):
 def bbank_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5], entry[6])
-    qry = "INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    qry = "INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
@@ -185,7 +185,7 @@ def bbank_add(entry, c, conn):
 def bdrive_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5], entry[6],entry[7])
-    qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)
@@ -223,7 +223,7 @@ def donor_add(entry, c, conn):
 def recp_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5], entry[6],entry[7],entry[8],entry[9])
-    qry = "INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    qry = "INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 
