@@ -34,6 +34,8 @@ users = {}
 pas = '1234'
 nm = 'admin'
 users[nm] = pas
+
+# FOR GUI
 e1 = Entry
 e2 = Entry
 
@@ -42,24 +44,27 @@ e2 = Entry
 #db.kn_pin(c, code, conn)
 
 
+# Hold donor values
+donor_arr = []
+
 print("Bloody Mary's Blood Bank Database is now open for use\n")
 
 # Get all tables, or make them if they don't exist
-#Blood banks
+# Blood banks
 db.get_bloodbanks(c)
-#db.see_bbanks(c)
-#Blood inventory
+# db.see_bbanks(c)
+# Blood inventory
 db.get_blood_inv(c)
-#db.see_inv(c)
-#Staff
+# db.see_inv(c)
+# Staff
 db.get_staff(c)
-#db.see_staff(c)
+# db.see_staff(c)
 # Donors
 db.get_donors(c)
-#db.see_donors(c)
+# db.see_donors(c)
 #
 db.get_recps(c)
-#db.see_recps(c)
+# db.see_recps(c)
 
 
 # gets called when the quit button is hit on the gui
