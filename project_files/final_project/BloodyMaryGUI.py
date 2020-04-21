@@ -59,15 +59,15 @@ def buttonHandler(arg1):
         e = add_donor_entry.get()
         print(e)
         new_entry2=list(e.split(', '))
-        print(new_entry2)
+        #print(new_entry2)
         # Checks if the number length is <4, if it is, tell the user
         if len(new_entry2) != 9:
             print("Incorrect attribute size")
         else:
             # Add pin entry to record database
             #db.donor_add(new_entry2, c, conn)
-            #db.see_donors(c)
-            records(root,conn)
+            db.see_donors(c)
+            #records(root,conn)
         # Deletes the number array on an ENTER
             
     # If the settings button is pressed, then have username
@@ -101,9 +101,9 @@ blood_frame.place(relx=0.5, relwidth=1, relheight=1, anchor='n')
 # Data Entry Frame
 data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_entry_frame.place(relx=0.5, rely=0.04, relwidth=0.75,
-                       relheight=0.4, anchor='n')
+                       relheight=0.25, anchor='n')
 
-
+'''
 # Data Display Frame and Label
 data_display_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_display_frame.place(
@@ -113,7 +113,7 @@ data_display_label = Label(
     data_display_frame)
 data_display_label.place(relwidth=1, relheight=1)
 
-'''
+
 # Display Label Function
 def format_data_display():
     try:
