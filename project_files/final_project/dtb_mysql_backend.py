@@ -3,23 +3,23 @@
 '''This is a test for using sqLite 3 with PINCode
 It creates a database for donors, recipients, staff, blood types, and ...
 '''
-#import flask
-#import sqlite3 as lite
+# import flask
+# import sqlite3 as lite
 import mysql
 import datetime
-#import os
+# import os
 # from sqlite3 import Error
-#from os.path import join, dirname, realpath
+# from os.path import join, dirname, realpath
 
 
 global conn, c
 
 
 def start_c1():
-    conn = mysql.connect(host = "localhost",
-    user = "root",
-    passwd = "rexoatie45",
-    database = "bloodbank")
+    conn = mysql.connect(host="localhost",
+                         user="root",
+                         passwd="rexoatie45",
+                         database="bloodbank")
     return conn
 
 
@@ -49,6 +49,7 @@ def get_bloodbanks(c):
 );""")
         }
 
+
 def get_blood_inv(c):
     # get the count of tables with the name
     c.execute(
@@ -69,17 +70,18 @@ def get_blood_inv(c):
     	on update cascade on delete cascade
 );""")
         }
-					  
+
+
 def get_staff(c):
-	c.execute(
+    c.execute(
         '''SELECT * FROM bloodbank WHERE type='table' AND name='donor'; ''')
     if c.fetchone()[0] == 0:
         {
             c.execute("""	CREATE TABLE staff (
-  Staff_ID int(9) NOT NULL primary key,
-  Name varchar(25) NOT NULL,
-  Address varchar(20),
-  Phone varchar(14),
+     Staff_ID int(9) NOT NULL primary key,
+    Name varchar(25) NOT NULL,
+     Address varchar(20),
+    Phone varchar(14),
   Shift varchar(20),
   Gender char(10),
   DOB varchar(10),
@@ -115,6 +117,7 @@ def get_donors(c):
 );""")
         }
 
+
 def get_recps(c):
 
     c.execute(
@@ -138,9 +141,10 @@ def get_recps(c):
     	on update cascade on delete cascade 
 );""")
         }
-		
+
+
 def populate_dtb(c):
-	
+
 
 def donor_add(nm, users, c, conn):
 
@@ -158,7 +162,6 @@ def unk_pin(c, code, conn):
     conn.commit()
 
 
-
 def db_see_bbanks(c):
     # from PINCode_1 import conn,c
     # Print USERS
@@ -167,6 +170,7 @@ def db_see_bbanks(c):
         print(row)
     print("\n")
 
+
 def db_see_inv(c):
 
     print("---------------BLOOD INVENTORY------------------------")
@@ -174,12 +178,14 @@ def db_see_inv(c):
         print(row)
     print("\n")
 
+
 def db_see_staff(c):
-  
+
     print("---------------STAFF------------------------")
     for row in c.execute('SELECT * FROM staff'):
         print(row)
     print("\n")
+
 
 def db_see_donors(c):
 
@@ -187,15 +193,14 @@ def db_see_donors(c):
     for row in c.execute('SELECT * FROM donor'):
         print(row)
     print("\n")
-	
+
+
 def db_see_recps(c):
 
     print("---------------RECIPIENTS------------------------")
     for row in c.execute('SELECT * FROM recipients'):
         print(row)
     print("\n")
-
-
 
 
 def db_close(conn):
@@ -209,6 +214,3 @@ def dtb_del(conn, c):
     print("Blood bank database clearing")
     for row in c.execute('delete from bloodbank '):
         print("Deleting row...")
-
-
-
