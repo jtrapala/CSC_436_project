@@ -184,23 +184,25 @@ def bbank_add(entry, c, conn):
 
 def bdrive_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
-           entry[3], entry[4], entry[5], entry[6])
+           entry[3], entry[4], entry[5], entry[6],entry[7])
     qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)
 
 
-def inv_add(nm, users, c, conn):
-    val = (nm, users[nm])
+def inv_add(entry, c, conn):
+    val = (entry[0], entry[1], entry[2],
+           entry[3], entry[4], entry[5])
     qry = "INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)VALUES ( % s, % s, % s, % s, % s, % s, % s, % s, % s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO staff(Staff_ID, sname, Address, Phone, Shift, Gender, DOB, Bank_ID)
 
 
-def staff_add(nm, users, c, conn):
-    val = (nm, users[nm])
+def staff_add(entry, c, conn):
+    val = (entry[0], entry[1], entry[2],
+           entry[3], entry[4], entry[5], entry[6],entry[7])
     qry = "INSERT INTO staff(Staff_ID, Name, Address, Phone, Shift, Gender, DOB, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -209,7 +211,8 @@ def staff_add(nm, users, c, conn):
 
 
 def donor_add(entry, c, conn):
-    val = (entry[0],entry[1],entry[2],entry[3],entry[4],entry[5],entry[6],entry[7],entry[8])
+    val = (entry[0], entry[1], entry[2],
+           entry[3], entry[4], entry[5], entry[6], entry[7], entry[8])
     qry = "INSERT INTO donor(Donor_ID, dname, Address, Phone_Number, Medical_Condition, Gender, DOB, Blood_Type, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -217,8 +220,9 @@ def donor_add(entry, c, conn):
 # INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)
 
 
-def recp_add(nm, users, c, conn):
-    val = (nm, users[nm])
+def recp_add(entry, c, conn):
+    val = (entry[0], entry[1], entry[2],
+           entry[3], entry[4], entry[5], entry[6],entry[7],entry[8],entry[9])
     qry = "INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -237,12 +241,9 @@ def see_bbanks(c):
     # from PINCode_1 import conn,c
     # Print USERS
     print("---------------BLOOD BANKS------------------------")
-    for row in c.execute('''SELECT * FROM b_bank;'''):
-        result = c.fetchone()
-        if result:
+    c.execute('''SELECT * FROM b_bank;'''):
+    for row in c.fetchall():
             print(row)
-        else:
-            continue
     print("\n")
 
 
@@ -250,36 +251,27 @@ def see_drives(c):
     # from PINCode_1 import conn,c
     # Print USERS
     print("---------------BLOOD DRIVES------------------------")
-    for row in c.execute('''SELECT * FROM blood_drive;'''):
-        result = c.fetchone()
-        if result:
+    c.execute('''SELECT * FROM blood_drive;'''):
+    for row in c.fetchall():
             print(row)
-        else:
-            continue
     print("\n")
 
 
 def see_inv(c):
 
     print("---------------BLOOD INVENTORY------------------------")
-    for row in c.execute('''SELECT * FROM blood;'''):
-        result = c.fetchone()
-        if result:
+    c.execute('''SELECT * FROM blood;'''):
+    for row in c.fetchall():
             print(row)
-        else:
-            continue
     print("\n")
 
 
 def see_staff(c):
 
     print("---------------STAFF------------------------")
-    for row in c.execute('''SELECT * FROM staff;'''):
-        result = c.fetchone()
-        if result:
+    c.execute('''SELECT * FROM staff;'''):
+    for row in c.fetchall():
             print(row)
-        else:
-            continue
     print("\n")
 
 
@@ -293,12 +285,9 @@ def see_donors(c):
 
 def see_recps(c):
     print("---------------RECIPIENTS------------------------")
-    for row in c.execute('''SELECT * FROM recipients;'''):
-        result = c.fetchone()
-        if result:
+    c.execute('''SELECT * FROM recipients;'''):
+    for row in c.fetchall():
             print(row)
-        else:
-            continue
     print("\n")
 
 
