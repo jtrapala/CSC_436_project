@@ -1,7 +1,7 @@
 import mysql.connector as mysql
 from tkinter import *
 import tkinter.font
-from test_pure_front import records
+from test_pure_front import table_actions
 import dtb_mysql_backend as db
 
 global conn, c
@@ -26,7 +26,7 @@ conn = db.start_c1()
 # Get cursor
 c = db.start_c2(conn)
 
-#db.see_donors(c)
+# db.see_donors(c)
 
 # gets called when the quit button is hit on the gui
 
@@ -36,16 +36,27 @@ def destroy():
     root.destroy()
 
 
-def buttonHandler(arg1):
+def buttonHandler_table(arg1):
 
     # Use enter function
     print("Add entry: ", arg1)
     # print number
     if arg1 == "blood_drive":
-        e = add_blood_drive_entry.get()
-        print("Entry:",e)
-        new_entry1=list(e.split(', '))
-        print(len(new_entry1))
+        e = blood_drive_entry.get()
+        print("Entry:", e)
+        u_pw = Toplevel(root)
+        table_actions(u_pw, conn, 'blood_drive')
+        u_pw.title("Blood Drive Window")
+
+    # User/Pass Submit
+        u_bt = Button(u_pw, text="ADD",
+                      command=lambda arg1="SUBMIT": adminSubmit("SUBMIT"))
+        u_bt.bind("<Return>", lambda event,
+                  arg1="SUBMIT": buttonHandler_b(event, arg1))
+        u_bt.grid(row=2, column=20)
+
+        '''new_entry1=list(e.split(', '))
+        # print(len(new_entry1))
         # Checks if the number length is <4, if it is, tell the user
         if len(new_entry1) != 8:
             print("Incorrect attribute size")
@@ -55,12 +66,12 @@ def buttonHandler(arg1):
             db.see_bbanks(c)
         # Deletes the number array on an ENTER
         del new_entry1[:]
-
+'''
     if arg1 == "donor":
-        e = add_donor_entry.get()
-        print("Entry:",e)
-        new_entry2=list(e.split(', '))
-        #print(new_entry2)
+        e = donor_entry.get()
+        print("Entry:", e)
+        '''new_entry2 = list(e.split(', '))
+        # print(new_entry2)
         # Checks if the number length is <4, if it is, tell the user
         if len(new_entry2) != 9:
             print("Incorrect attribute size")
@@ -68,13 +79,13 @@ def buttonHandler(arg1):
             # Add pin entry to record database
             db.donor_add(new_entry2, c, conn)
             db.see_donors(c)
-            #records(root,conn)
+            # records(root,conn)
         # Deletes the number array on an ENTER
-            del new_entry2[:]
+          del new_entry2[:]'''
     if arg1 == "recipient":
-        e = add_recipient_entry.get()
-        print("Entry:",e)
-        new_entry3=list(e.split(', '))
+        e = recipient_entry.get()
+        print("Entry:", e)
+        ''' new_entry3 = list(e.split(', '))
         print(len(new_entry3))
         # Checks if the number length is <4, if it is, tell the user
         if len(new_entry3) != 10:
@@ -83,13 +94,13 @@ def buttonHandler(arg1):
             # Add pin entry to record database
             db.recp_add(new_entry3, c, conn)
             db.see_recps(c)
-            #records(root,conn)
+            # records(root,conn)
         # Deletes the number array on an ENTER
-            del new_entry3[:]
+            del new_entry3[:]'''
     if arg1 == "staff":
-        e = add_staff_entry.get()
-        print("Entry:",e)
-        new_entry4=list(e.split(', '))
+        e = staff_entry.get()
+        print("Entry:", e)
+        '''new_entry4 = list(e.split(', '))
         print(len(new_entry4))
         # Checks if the number length is <4, if it is, tell the user
         if len(new_entry4) != 8:
@@ -98,9 +109,9 @@ def buttonHandler(arg1):
             # Add pin entry to record database
             db.staff_add(new_entry4, c, conn)
             db.see_staff(c)
-            #records(root,conn)
+            # records(root,conn)
         # Deletes the number array on an ENTER
-            del new_entry4[:]
+            del new_entry4[:]'''
     if arg1 == "view":
         print("Viewing all tables")
         db.see_bbanks(c)
@@ -108,18 +119,28 @@ def buttonHandler(arg1):
         db.see_donors(c)
         db.see_recps(c)
         db.see_staff(c)
-    
+
 
 def buttonHandler_a(event, argument1):
     print(event)
-    buttonHandler(argument1)
-    # adminSubmit(argument1)
+    buttonHandler_table(argument1)
 
-# on change dropdown value
+# Stores the entered username and hashed password in a dictionary in
+# another window, clears on submit
 
 
-def change_dropdown(*args):
-    print(variable.get())
+def adminSubmit(arg1):
+    if arg1 is "SUBMIT":
+        print("Database cleared")
+
+
+def buttonHandler_b(event, argument1):
+   # print event
+    adminSubmit(argument1)
+
+
+def fake_command():
+    pass
 
 
 root = Tk()
@@ -127,8 +148,7 @@ root.title("Bloody Mary's Blood Bank")
 root.geometry("900x900")
 
 
-
-# Formating Materials
+# Formatting Materials
 # Underlying (Blood) Frame
 blood_frame = Frame(root, bg='dark red', bd=3)
 blood_frame.place(relx=0.5, relwidth=1, relheight=1, anchor='n')
@@ -138,107 +158,66 @@ data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_entry_frame.place(relx=0.5, rely=0.04, relwidth=0.75,
                        relheight=0.3, anchor='n')
 
-'''
-# Data Display Frame and Label
-data_display_frame = Frame(blood_frame, bg='light grey', bd=5)
-data_display_frame.place(
-    relx=0.5, rely=0.48, relwidth=0.9, relheight=0.45, anchor='n')
 
-data_display_label = Label(
-    data_display_frame)
-data_display_label.place(relwidth=1, relheight=1)
-
-
-# Display Label Function
-def format_data_display():
-    try:
-        # Use data minipulation function calls to display through label
-
-        data = 'Something. The more I think about this the more complicated it gets.'
-        # My thoughts are converging on to this function to display
-        # the data we are asking for via the queries we are putting through
-        # I'm having a hard time getting this to work with out the back end
-        # being connected so lets revisit this once it is connected.
-
-    except:
-        data = 'There was a problem retrieving that information'
-
-    return data
-
-'''
-# Data Manipulation Functions
-def fake_command():
-    pass
-
-
-def INSERT_ONE():
-    pass
-
-
-def INSERT_MANY():
-    pass
-
-
-def CREATE_TABLE():
-    pass
-
-
-def UPDATE_TABLE():
-    pass
-
-
-def VIEW_AS_ADMIN():
-    pass
-
-# Data Manipulation Formatting
-# Blood Bank Section
-
-
+# Fonts
 bt_font = tkinter.font.Font(family='Arial', size=16, weight=tkinter.font.BOLD)
 m_font = tkinter.font.Font(family='Arial', size=12, weight=tkinter.font.BOLD)
-# Blood Drive Section
-add_blood_drive_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
-add_blood_drive_entry.grid(row=1, column=1, padx=20, pady=10)
+# Blood Bank Section
+blood_bank_entry = Entry(data_entry_frame, width=40, font=bt_font)
+blood_bank_entry.grid(row=1, column=1, padx=20, pady=10)
 
-add_blood_drive_button = Button(data_entry_frame, text="Add Blood Drive",command=lambda arg1="blood_drive": buttonHandler("blood_drive"))
-add_blood_drive_button.bind("<Return>", lambda event,
-                            arg1="blood_drive": buttonHandler_a(event, arg1))
-add_blood_drive_button.grid(row=1, column=2, sticky=W)
+blood_bank_button = Button(data_entry_frame, text="Blood Bank Table Actions",
+                           command=lambda arg1="blood_bank": buttonHandler_table("blood_bank"))
+blood_bank_button.bind("<Return>", lambda event,
+                       arg1="blood_bank": buttonHandler_a(event, arg1))
+blood_bank_button.grid(row=1, column=2, sticky=W)
+# Blood Drive Section
+blood_drive_entry = Entry(data_entry_frame, width=40, font=bt_font)
+blood_drive_entry.grid(row=1, column=1, padx=20, pady=10)
+
+blood_drive_button = Button(data_entry_frame, text="Blood Drive Table Actions",
+                            command=lambda arg1="blood_drive": buttonHandler_table("blood_drive"))
+blood_drive_button.bind("<Return>", lambda event,
+                        arg1="blood_drive": buttonHandler_a(event, arg1))
+blood_drive_button.grid(row=1, column=2, sticky=W)
 
 # Donor Section
-add_donor_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
-add_donor_entry.grid(row=2, column=1, padx=20, pady=10)
+donor_entry = Entry(data_entry_frame, width=40, font=bt_font)
+donor_entry.grid(row=2, column=1, padx=20, pady=10)
 
-add_donor_button = Button(data_entry_frame, text="Add Donor",
-                          command=lambda arg1="donor": buttonHandler("donor"))
-add_donor_button.bind("<Return>", lambda event,
-                      arg1="donor": buttonHandler_a(event, arg1))
-add_donor_button.grid(row=2, column=2, sticky=W)
+donor_button = Button(data_entry_frame, text="Donor Table Actions",
+                      command=lambda arg1="donor": buttonHandler_table("donor"))
+donor_button.bind("<Return>", lambda event,
+                  arg1="donor": buttonHandler_a(event, arg1))
+donor_button.grid(row=2, column=2, sticky=W)
 
 # Recipient Section
-add_recipient_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
+recipient_entry = Entry(data_entry_frame, width=40, font=bt_font)
 
-add_recipient_entry.grid(row=3, column=1, padx=20, pady=10)
+recipient_entry.grid(row=3, column=1, padx=20, pady=10)
 
-add_recipient_button = Button(data_entry_frame, text="Add Recipient",command=lambda arg1="recipient": buttonHandler("recipient"))
-add_recipient_button.bind("<Return>", lambda event,
-                          arg1="recipient": buttonHandler_a(event, arg1))
-add_recipient_button.grid(row=3, column=2, sticky=W)
+recipient_button = Button(data_entry_frame, text="Recipient Table Actions",
+                          command=lambda arg1="recipient": buttonHandler_table("recipient"))
+recipient_button.bind("<Return>", lambda event,
+                      arg1="recipient": buttonHandler_a(event, arg1))
+recipient_button.grid(row=3, column=2, sticky=W)
 
 # Staff Section
-add_staff_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
-add_staff_entry.grid(row=4, column=1, padx=20, pady=10)
+staff_entry = Entry(data_entry_frame, width=40, font=bt_font)
+staff_entry.grid(row=4, column=1, padx=20, pady=10)
 
-add_staff_button = Button(data_entry_frame, text="Add Staff",command=lambda arg1="staff": buttonHandler("staff"))
-add_staff_button.bind("<Return>", lambda event,
-                      arg1="staff": buttonHandler_a(event, arg1))
-add_staff_button.grid(row=4, column=2, sticky=W)
+staff_button = Button(data_entry_frame, text="Staff Table Actions",
+                      command=lambda arg1="staff": buttonHandler_table("staff"))
+staff_button.bind("<Return>", lambda event,
+                  arg1="staff": buttonHandler_a(event, arg1))
+staff_button.grid(row=4, column=2, sticky=W)
 
 
-add_view_all = Button(data_entry_frame, text="View Tables",command=lambda arg1="view": buttonHandler("view"))
-add_view_all.bind("<Return>", lambda event,
-                      arg1="view": buttonHandler_a(event, arg1))
-add_view_all.grid(row=5, column=4)
+view_all = Button(data_entry_frame, text="View Tables",
+                  command=lambda arg1="view": buttonHandler_table("view"))
+view_all.bind("<Return>", lambda event,
+              arg1="view": buttonHandler_a(event, arg1))
+view_all.grid(row=5, column=4)
 
 # Blood Section
 
