@@ -43,10 +43,10 @@ def get_bloodbanks(c):
 		    CREATE TABLE b_bank (
   bb_ID int(9) NOT NULL primary key,
   bb_name varchar(25) NOT NULL,
-  address varchar(20),
-  city varchar(20),
-  state varchar(15),
-  phone varchar(14),
+  Address varchar(20),
+  City varchar(20),
+  State varchar(15),
+  Phone varchar(14),
   admin_Name varchar(25),
   unique(bb_ID)
 );""")
@@ -172,20 +172,20 @@ def get_recps(c):
 
 # def populate_dtb(c):
 
-# INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)
+# INSERT INTO b_bank(bb_ID, bb_name, Address, City, State, Phone, admin_name)
 def bbank_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5], entry[6])
-    qry = "INSERT INTO b_bank(bb_ID, bb_name, address, city, state, phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s)"
+    qry = "INSERT INTO b_bank(bb_ID, bb_name, Address, City, State, Phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
-# INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)
+# INSERT INTO blood_drive (bdrive_ID, bd_name, Address, City, State, Phone, bd_desc, bank_id)
 
 
 def bdrive_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5], entry[6], entry[7])
-    qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, Address, City, State, Phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)
@@ -203,7 +203,7 @@ def inv_add(entry, c, conn):
 def staff_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5], entry[6], entry[7])
-    qry = "INSERT INTO staff(Staff_ID, Name, Address, Phone, Shift, Gender, DOB, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    qry = "INSERT INTO staff(Staff_ID, sname, Address, Phone, Shift, Gender, DOB, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
 
@@ -349,7 +349,6 @@ def update_bbanks(c):
 
 def update_bbanks(c):
     pass
-
 
 
 def db_close(conn):
