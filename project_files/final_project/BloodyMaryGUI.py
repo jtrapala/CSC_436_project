@@ -17,6 +17,10 @@ global conn, c
 
 new_entry1 = Entry
 new_entry2 = Entry
+new_entry3 = Entry
+new_entry4 = Entry
+new_entry5 = Entry
+new_entry6 = Entry
 
 
 # Get connection going
@@ -34,6 +38,36 @@ c = db.start_c2(conn)
 def destroy():
     db.db_close(conn)
     root.destroy()
+
+
+def open_blood_window():
+    blood_window = Toplevel()
+    blood_window.mainloop()
+
+
+def open_bbanks_window():
+    bbank_window = Toplevel()
+    bbank_window.mainloop()
+
+
+def open_bdrives_window():
+    bdrive_window = Toplevel()
+    bdrive_window.mainloop()
+
+
+def open_donor_window():
+    donor_window = Toplevel()
+    donor_window.mainloop()
+
+
+def open_recps_window():
+    recipients_window = Toplevel()
+    recipients_window.mainloop()
+
+
+def open_staff_window():
+    staff_window = Toplevel()
+    staff_window.mainloop()
 
 
 def buttonHandler_table(arg1):
@@ -116,7 +150,7 @@ def buttonHandler_table(arg1):
         print("Viewing all tables")
         db.see_bbanks(c)
         db.see_inv(c)
-        db.see_donors(c)
+        text.insert(db.see_donors(c))
         db.see_recps(c)
         db.see_staff(c)
 
@@ -156,7 +190,7 @@ blood_frame.place(relx=0.5, relwidth=1, relheight=1, anchor='n')
 # Data Entry Frame
 data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_entry_frame.place(relx=0.5, rely=0.04, relwidth=0.75,
-                       relheight=0.3, anchor='n')
+                       relheight=0.40, anchor='n')
 
 
 # Fonts
@@ -228,20 +262,20 @@ root.config(menu=blood_menu)
 
 file_menu = Menu(blood_menu)
 blood_menu.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="New", command=fake_command)
 file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.quit)
 
 tables_menu = Menu(blood_menu)
 blood_menu.add_cascade(label="Tables", menu=tables_menu)
 # work out this command
-tables_menu.add_command(label="Blood Banks", command=fake_command)
+tables_menu.add_command(label="Blood", command=open_blood_window)
+tables_menu.add_command(label="Blood Banks", command=open_bbanks_window)
 tables_menu.add_command(label="Blood Drives",
-                        command=fake_command)  # and this one
+                        command=open_bdrives_window)  # and this one
 tables_menu.add_command(
-    label="Donors", command=fake_command)  # oh and this one
-tables_menu.add_command(label="Recipients", command=fake_command)
-tables_menu.add_command(label="Staff", command=fake_command)
+    label="Donors", command=open_donor_window)  # oh and this one
+tables_menu.add_command(label="Recipients", command=open_recps_window)
+tables_menu.add_command(label="Staff", command=open_staff_window)
 
 # Status Bar
 # current_status = StringVar()
@@ -254,5 +288,6 @@ my_status.place(relx=0.5, rely=1, relwidth=1, anchor='s')
 quitButton = tkinter.Button(root, text="QUIT", font=m_font,
                             bg="orange red", command=destroy)
 quitButton.grid(row=7, column=0)
+
 
 root.mainloop()

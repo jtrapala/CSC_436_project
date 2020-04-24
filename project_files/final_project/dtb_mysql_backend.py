@@ -18,9 +18,9 @@ global conn, c
 def start_c1():
     conn = mysql.connect(host="localhost",
                          user="root",
-                         # passwd = "URIallinone2020!",
-                         # database = "testdb",
-                         passwd="rexoatie45",
+                         passwd = "URIallinone2020!",
+                         #database = "testdb",)
+                         #passwd="rexoatie45",
                          database="BloodBank")
     return conn
 
@@ -289,6 +289,90 @@ def see_recps(c):
     for row in c.fetchall():
             print(row)
     print("\n")
+
+
+def del_bbanks(c):
+  print("Row deleted from Blood Banks Table")
+  c.execute('''DELETE FROM b_bank WHERE bb_ID = %s''')
+  print("\n")
+
+
+
+def del_bbdrives(c):
+  print("Row deleted from Blood Drives Table")
+  c.execute('''DELETE FROM blood_drive WHERE bdrive_ID = %s''')
+  print("\n")
+
+
+def del_blood(c):
+  print("Row deleted from Blood Table")
+  c.execute('''DELETE FROM blood WHERE Bloodbag_number = %s ''')
+  print("\n")
+
+def del_donors(c):
+  print("Row deleted from Donors Table")
+  c.execute('''DELETE FROM donor WHERE Donor_ID = %s ''')
+  print("\n")
+
+
+def del_recps(c):
+  print("Row deleted from Recipients Table")
+  c.execute('''DELETE FROM recipient WHERE recip_ID = %s''')
+  print("\n")
+
+
+def del_staff(c):
+  print("Row deleted from Staff Table")
+  c.execute('''DELETE FROM staff WHERE Staff_ID = %s''')
+  print("\n")
+
+
+
+
+
+def update_bbanks(c):
+  pass
+
+
+
+
+
+def update_bbanks(c):
+  pass
+
+
+
+
+
+def update_bbanks(c):
+  pass
+
+
+
+
+
+
+def update_bbanks(c):
+  pass
+
+
+
+
+def update_bbanks(c):
+  pass
+
+
+
+
+
+def update_bbanks(c):
+  pass
+
+
+
+
+
+
 
 
 def db_close(conn):
