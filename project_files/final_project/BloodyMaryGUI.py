@@ -168,9 +168,11 @@ def buttonHandler(arg1):
         if len(new_entry6) != 7:
             print("Incorrect attribute size")
         else:
+            # Add pin entry to record database
             db.staff_add(new_entry6, c, conn)
             db.see_staff(c)
             #records(root,conn)
+        # Deletes the number array on an ENTER
             del new_entry6[:]
 
 
@@ -182,6 +184,14 @@ def buttonHandler(arg1):
         text.insert(db.see_donors(c))
         db.see_recps(c)
         db.see_staff(c)
+
+
+ #   if arg1 == "update":
+
+    if arg1 == "delete":
+        db.del_donor(c)
+
+
     
 
 def buttonHandler_a(event, argument1):
@@ -210,7 +220,7 @@ blood_frame.place(relx=0.5, relwidth=1, relheight=1, anchor='n')
 # Data Entry Frame
 data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_entry_frame.place(relx=0.5, rely=0.04, relwidth=0.75,
-                       relheight=0.3, anchor='n')
+                       relheight=0.40, anchor='n')
 
 
 # Data Display Frame and Label
@@ -218,20 +228,9 @@ data_display_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_display_frame.place(
     relx=0.5, rely=0.48, relwidth=0.9, relheight=0.45, anchor='n')
 
-data_display_label = Label(
-    data_display_frame)
-data_display_label.place(relwidth=1, relheight=1)
+textbox = Text(data_display_frame)
+textbox.place(relheight=1, relwidth=1)
 
-
-# Display Label Function
-def format_data_display():
-    try:
-        # Use data minipulation function calls to display through label
-
-        data = 'Something. The more I think about this the more complicated it gets.'
-        # My thoughts are converging on to this function to display
-        # the data we are asking for via the queries we are putting through
-        # I'm having a hard time getting this to work with out the back end
 
 # Data Manipulation Functions
 def fake_command():
@@ -284,6 +283,7 @@ add_staff_button.grid(row=4, column=2, sticky=W)
 
 add_blood_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
 add_blood_entry.grid(row=5, column=1, padx=20, pady=10)
+
 add_blood_button = Button(data_entry_frame, text="Add Blood Info.",command=lambda arg1="blood": buttonHandler("blood"))
 add_blood_button.bind("<Return>", lambda event,
                       arg1="blood": buttonHandler_a(event, arg1))
@@ -306,6 +306,10 @@ add_bbank_button.grid(row=6, column=2, sticky=W)
 #Function Buttons
 #add_button
 
+
+update_table = Button(data_entry_frame, text = "Update", command=lambda arg1="update": buttonHandler("update"))
+update_table.bind("<Return>", lambda event, arg1="update": buttonHandler_a(event,arg1))
+update_table.grid(row=8, column=1)
 
 
 add_view_all = Button(data_entry_frame, text="View Tables",command=lambda arg1="view": buttonHandler("view"))
