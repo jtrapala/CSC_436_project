@@ -18,9 +18,9 @@ global conn, c
 def start_c1():
     conn = mysql.connect(host="localhost",
                          user="root",
-                         passwd = "URIallinone2020!",
-                         #database = "testdb",)
-                         #passwd="rexoatie45",
+                         #passwd = "URIallinone2020!",
+                         # database = "testdb",)
+                         passwd="rexoatie45",
                          database="BloodBank")
     return conn
 
@@ -184,7 +184,7 @@ def bbank_add(entry, c, conn):
 
 def bdrive_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
-           entry[3], entry[4], entry[5], entry[6],entry[7])
+           entry[3], entry[4], entry[5], entry[6], entry[7])
     qry = "INSERT INTO blood_drive (bdrive_ID, bd_name, address, city, state, phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -202,7 +202,7 @@ def inv_add(entry, c, conn):
 
 def staff_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
-           entry[3], entry[4], entry[5], entry[6],entry[7])
+           entry[3], entry[4], entry[5], entry[6], entry[7])
     qry = "INSERT INTO staff(Staff_ID, Name, Address, Phone, Shift, Gender, DOB, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -222,7 +222,7 @@ def donor_add(entry, c, conn):
 
 def recp_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
-           entry[3], entry[4], entry[5], entry[6],entry[7],entry[8],entry[9])
+           entry[3], entry[4], entry[5], entry[6], entry[7], entry[8], entry[9])
     qry = "INSERT INTO recipient (recip_ID, rname, Address, Phone_Number, Medical_Condition, Gender, DOB, Urgency_Status, Blood_Type, donor_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     c.execute(qry, val)
     conn.commit()
@@ -243,7 +243,7 @@ def see_bbanks(c):
     print("---------------BLOOD BANKS------------------------")
     c.execute('''SELECT * FROM b_bank;''')
     for row in c.fetchall():
-            print(row)
+        print(row)
     print("\n")
 
 
@@ -253,7 +253,7 @@ def see_drives(c):
     print("---------------BLOOD DRIVES------------------------")
     c.execute('''SELECT * FROM blood_drive;''')
     for row in c.fetchall():
-            print(row)
+        print(row)
     print("\n")
 
 
@@ -262,7 +262,7 @@ def see_inv(c):
     print("---------------BLOOD INVENTORY------------------------")
     c.execute('''SELECT * FROM blood;''')
     for row in c.fetchall():
-            print(row)
+        print(row)
     print("\n")
 
 
@@ -271,7 +271,7 @@ def see_staff(c):
     print("---------------STAFF------------------------")
     c.execute('''SELECT * FROM staff;''')
     for row in c.fetchall():
-            print(row)
+        print(row)
     print("\n")
 
 
@@ -279,7 +279,7 @@ def see_donors(c):
     print("---------------DONORS------------------------")
     c.execute('''SELECT * FROM donor;''')
     for row in c.fetchall():
-            print(row)
+        print(row)
     print("\n")
 
 
@@ -287,91 +287,68 @@ def see_recps(c):
     print("---------------RECIPIENTS------------------------")
     c.execute('''SELECT * FROM recipient;''')
     for row in c.fetchall():
-            print(row)
+        print(row)
     print("\n")
 
 
 def del_bbanks(c):
-  print("Row deleted from Blood Banks Table")
-  c.execute('''DELETE FROM b_bank WHERE bb_ID = %s''')
-  print("\n")
-
+    print("Row deleted from Blood Banks Table")
+    c.execute('''DELETE FROM b_bank WHERE bb_ID = %s''')
+    print("\n")
 
 
 def del_bbdrives(c):
-  print("Row deleted from Blood Drives Table")
-  c.execute('''DELETE FROM blood_drive WHERE bdrive_ID = %s''')
-  print("\n")
+    print("Row deleted from Blood Drives Table")
+    c.execute('''DELETE FROM blood_drive WHERE bdrive_ID = %s''')
+    print("\n")
 
 
 def del_blood(c):
-  print("Row deleted from Blood Table")
-  c.execute('''DELETE FROM blood WHERE Bloodbag_number = %s ''')
-  print("\n")
+    print("Row deleted from Blood Table")
+    c.execute('''DELETE FROM blood WHERE Bloodbag_number = %s ''')
+    print("\n")
+
 
 def del_donors(c):
-  print("Row deleted from Donors Table")
-  c.execute('''DELETE FROM donor WHERE Donor_ID = %s ''')
-  print("\n")
+    print("Row deleted from Donors Table")
+    c.execute('''DELETE FROM donor WHERE Donor_ID = %s ''')
+    print("\n")
 
 
 def del_recps(c):
-  print("Row deleted from Recipients Table")
-  c.execute('''DELETE FROM recipient WHERE recip_ID = %s''')
-  print("\n")
+    print("Row deleted from Recipients Table")
+    c.execute('''DELETE FROM recipient WHERE recip_ID = %s''')
+    print("\n")
 
 
 def del_staff(c):
-  print("Row deleted from Staff Table")
-  c.execute('''DELETE FROM staff WHERE Staff_ID = %s''')
-  print("\n")
-
-
-
+    print("Row deleted from Staff Table")
+    c.execute('''DELETE FROM staff WHERE Staff_ID = %s''')
+    print("\n")
 
 
 def update_bbanks(c):
-  pass
-
-
-
+    pass
 
 
 def update_bbanks(c):
-  pass
-
-
-
+    pass
 
 
 def update_bbanks(c):
-  pass
-
-
-
-
+    pass
 
 
 def update_bbanks(c):
-  pass
-
-
-
-
-def update_bbanks(c):
-  pass
-
-
-
+    pass
 
 
 def update_bbanks(c):
-  pass
+    pass
 
 
-
-
-
+def update_bbanks(c):
+    pass
 
 
 
