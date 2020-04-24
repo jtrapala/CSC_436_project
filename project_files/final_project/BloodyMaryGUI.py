@@ -17,6 +17,10 @@ global conn, c
 
 new_entry1 = Entry
 new_entry2 = Entry
+new_entry3 = Entry
+new_entry4 = Entry
+new_entry5 = Entry
+new_entry6 = Entry
 
 
 # Get connection going
@@ -35,8 +39,37 @@ def destroy():
     db.db_close(conn)
     root.destroy()
 
+def open_blood_window():
+    blood_window = Toplevel()
+    blood_window.mainloop()
+
+
+def open_bbanks_window():
+    bbank_window = Toplevel()
+    bbank_window.mainloop()
+
+def open_bdrives_window():
+    bdrive_window = Toplevel()
+    bdrive_window.mainloop()
+
+
+def open_donor_window():
+    donor_window = Toplevel()
+    donor_window.mainloop()
+
+
+def open_recps_window():
+    recipients_window = Toplevel()
+    recipients_window.mainloop()
+
+
+def open_staff_window():
+    staff_window = Toplevel()
+    staff_window.mainloop()
+
 
 def buttonHandler(arg1):
+
 
     # Use enter function
     print("Add entry: ", arg1)
@@ -56,6 +89,7 @@ def buttonHandler(arg1):
         # Deletes the number array on an ENTER
         del new_entry1[:]
 
+
     if arg1 == "donor":
         e = add_donor_entry.get()
         print("Entry:",e)
@@ -71,6 +105,8 @@ def buttonHandler(arg1):
             #records(root,conn)
         # Deletes the number array on an ENTER
             del new_entry2[:]
+
+
     if arg1 == "recipient":
         e = add_recipient_entry.get()
         print("Entry:",e)
@@ -86,6 +122,8 @@ def buttonHandler(arg1):
             #records(root,conn)
         # Deletes the number array on an ENTER
             del new_entry3[:]
+
+
     if arg1 == "staff":
         e = add_staff_entry.get()
         print("Entry:",e)
@@ -101,11 +139,47 @@ def buttonHandler(arg1):
             #records(root,conn)
         # Deletes the number array on an ENTER
             del new_entry4[:]
+
+
+
+    if arg1 == "blood":
+        e = add_blood_entry.get()
+        print("Entry:",e)
+        new_entry5=list(e.split(', '))
+        print(len(new_entry5))
+        # Checks if the number length is <4, if it is, tell the user
+        if len(new_entry5) != 6:
+            print("Incorrect attribute size")
+        else:
+            # Add pin entry to record database
+            db.staff_add(new_entry5, c, conn)
+            db.see_staff(c)
+            #records(root,conn)
+        # Deletes the number array on an ENTER
+            del new_entry5[:]
+
+
+    if arg1 == "bbank":
+        e = add_bbank_entry.get()
+        print("Entry:",e)
+        new_entry6=list(e.split(', '))
+        print(len(new_entry6))
+        # Checks if the number length is <4, if it is, tell the user
+        if len(new_entry6) != 7:
+            print("Incorrect attribute size")
+        else:
+            db.staff_add(new_entry6, c, conn)
+            db.see_staff(c)
+            #records(root,conn)
+            del new_entry6[:]
+
+
+
     if arg1 == "view":
         print("Viewing all tables")
         db.see_bbanks(c)
         db.see_inv(c)
-        db.see_donors(c)
+        text.insert(db.see_donors(c))
         db.see_recps(c)
         db.see_staff(c)
     
@@ -138,7 +212,7 @@ data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_entry_frame.place(relx=0.5, rely=0.04, relwidth=0.75,
                        relheight=0.3, anchor='n')
 
-'''
+
 # Data Display Frame and Label
 data_display_frame = Frame(blood_frame, bg='light grey', bd=5)
 data_display_frame.place(
@@ -158,36 +232,9 @@ def format_data_display():
         # My thoughts are converging on to this function to display
         # the data we are asking for via the queries we are putting through
         # I'm having a hard time getting this to work with out the back end
-        # being connected so lets revisit this once it is connected.
 
-    except:
-        data = 'There was a problem retrieving that information'
-
-    return data
-
-'''
 # Data Manipulation Functions
 def fake_command():
-    pass
-
-
-def INSERT_ONE():
-    pass
-
-
-def INSERT_MANY():
-    pass
-
-
-def CREATE_TABLE():
-    pass
-
-
-def UPDATE_TABLE():
-    pass
-
-
-def VIEW_AS_ADMIN():
     pass
 
 # Data Manipulation Formatting
@@ -235,10 +282,42 @@ add_staff_button.bind("<Return>", lambda event,
 add_staff_button.grid(row=4, column=2, sticky=W)
 
 
+add_blood_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
+add_blood_entry.grid(row=5, column=1, padx=20, pady=10)
+add_blood_button = Button(data_entry_frame, text="Add Blood Info.",command=lambda arg1="blood": buttonHandler("blood"))
+add_blood_button.bind("<Return>", lambda event,
+                      arg1="blood": buttonHandler_a(event, arg1))
+add_blood_button.grid(row=5, column=2, sticky=W)
+
+
+add_bbank_entry = Entry(data_entry_frame, width=40, font=("Times", 16))
+add_bbank_entry.grid(row=6, column=1, padx=20, pady=10)
+
+add_bbank_button = Button(data_entry_frame, text="Add Blood Bank",command=lambda arg1="bbank": buttonHandler("bbank"))
+add_bbank_button.bind("<Return>", lambda event,
+                      arg1="bbank": buttonHandler_a(event, arg1))
+add_bbank_button.grid(row=6, column=2, sticky=W)
+
+
+
+
+
+
+#Function Buttons
+#add_button
+
+
+
 add_view_all = Button(data_entry_frame, text="View Tables",command=lambda arg1="view": buttonHandler("view"))
 add_view_all.bind("<Return>", lambda event,
                       arg1="view": buttonHandler_a(event, arg1))
-add_view_all.grid(row=5, column=4)
+add_view_all.grid(row=8, column=3)
+
+
+delete_button = Button(data_entry_frame, text="Delete", command=lambda arg1="delete": buttonHandler("delete"))
+delete_button.bind("<Return>", lambda event, arg1="delete": buttonHandler_a(event,arg1))
+delete_button.grid(row=8,column=2)
+
 
 # Blood Section
 
@@ -249,20 +328,18 @@ root.config(menu=blood_menu)
 
 file_menu = Menu(blood_menu)
 blood_menu.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="New", command=fake_command)
 file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.quit)
 
 tables_menu = Menu(blood_menu)
 blood_menu.add_cascade(label="Tables", menu=tables_menu)
 # work out this command
-tables_menu.add_command(label="Blood Banks", command=fake_command)
-tables_menu.add_command(label="Blood Drives",
-                        command=fake_command)  # and this one
-tables_menu.add_command(
-    label="Donors", command=fake_command)  # oh and this one
-tables_menu.add_command(label="Recipients", command=fake_command)
-tables_menu.add_command(label="Staff", command=fake_command)
+tables_menu.add_command(label="Blood", command=open_blood_window)
+tables_menu.add_command(label="Blood Banks", command=open_bbanks_window)
+tables_menu.add_command(label="Blood Drives",command=open_bdrives_window)  # and this one
+tables_menu.add_command(label="Donors", command=open_donor_window)  # oh and this one
+tables_menu.add_command(label="Recipients", command=open_recps_window)
+tables_menu.add_command(label="Staff", command=open_staff_window)
 
 # Status Bar
 # current_status = StringVar()
@@ -275,5 +352,7 @@ my_status.place(relx=0.5, rely=1, relwidth=1, anchor='s')
 quitButton = tkinter.Button(root, text="QUIT", font=m_font,
                             bg="orange red", command=destroy)
 quitButton.grid(row=7, column=0)
+
+
 
 root.mainloop()
