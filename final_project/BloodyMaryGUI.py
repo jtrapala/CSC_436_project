@@ -8,14 +8,6 @@ from PIL import Image, ImageTk
 
 global conn, c
 
-'''BMDB = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    # passwd = "URIallinone2020!",
-    # database = "testdb",
-    passwd="rexoatie45",
-    database="BloodBank",
-)'''
 
 # For button images
 pth = os.getcwd()
