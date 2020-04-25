@@ -1,0 +1,17 @@
+USE bloodBank;
+#to get the name of at least one donor with o-type blood*\
+
+Select Name
+From donor
+Where exists
+(Select * 
+From donor 
+Where blood_type = 'A+'
+);
+
+Select Name
+From recipient 
+Where Urgency_Status >
+(Select Y
+From recipient
+);
