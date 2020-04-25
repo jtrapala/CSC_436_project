@@ -3,11 +3,8 @@
 Group Members:
 
 Matt Pitman matt_pitman@my.uri.edu
-
 Troy Durand tsdurand@my.uri.edu
-
 Hassan Bhatti hassan_bhatti@my.uri.edu
-
 Jane Trapala jane_trapala@my.uri.edu
 
 Repository link:
