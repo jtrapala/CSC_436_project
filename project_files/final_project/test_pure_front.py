@@ -35,20 +35,6 @@ class table_actions():
         self.showallrecords()
         self.create_action_buttons()
 
-    def get_q1(self):
-        if (self.table_name == "blood_drive"):
-            return "DESCRIBE blood_drive;"
-        elif (self.table_name == "b_bank"):
-            return "DESCRIBE b_bank;"
-        elif (self.table_name == "blood"):
-            return "DESCRIBE blood;"
-        elif (self.table_name == "donor"):
-            return "DESCRIBE donor;"
-        elif (self.table_name == "recipient"):
-            return "DESCRIBE recipient;"
-        elif (self.table_name == "staff"):
-            return "DESCRIBE staff;"
-
     def get_table_name(self):
         if (self.table_name == "blood_drive"):
             return 'blood_drive'
@@ -67,7 +53,7 @@ class table_actions():
 
     def get_q3(self):
         if (self.table_name == "blood_drive"):
-            return "DELETE FROM blood_drive WHERE bb_ID = %s;"
+            return "DELETE FROM blood_drive WHERE bdrive_ID = %s;"
         elif (self.table_name == "b_bank"):
             return "DELETE FROM b_bank WHERE bb_ID = %s;"
         elif (self.table_name == "blood"):
@@ -129,15 +115,14 @@ class table_actions():
                   arg1="DELETE": self.buttonHandler_b(event, arg1))
         d_bt.grid(row=6, column=40)
         # View Table button
-        view_all = Button(self.frame2, text="View Table",
+        view_all = Button(self.frame2, text="Refresh Table",
                           command=lambda arg1="view": self.table_Submit("view"))
         view_all.bind("<Return>", lambda event,
                       arg1="view": self.buttonHandler_b(event, arg1))
         view_all.grid(row=7, column=40)
 
     def create_entries(self):
-        q1 = self.get_q1()
-        self.cur.execute(q1)
+        self.cur.execute("DESCRIBE {}".format(self.table_name))
         attr = list(self.cur.fetchall())
         # print(attr[0][0])
         for i in range(len(attr)):
@@ -149,16 +134,14 @@ class table_actions():
 
     def get_attrib_names(self):
         attrib_names = []
-        q1 = self.get_q1()
-        self.cur.execute(q1)
+        self.cur.execute("DESCRIBE {}".format(self.table_name))
         attr = list(self.cur.fetchall())
         for x in range(len(attr)):
             attrib_names.append(attr[x][0])
         return attrib_names
 
     def show_attribs(self):
-        q1 = self.get_q1()
-        self.cur.execute(q1)
+        self.cur.execute("DESCRIBE {}".format(self.table_name))
         attr = list(self.cur.fetchall())
         # print(attr[0][0])
         for i in range(len(attr)):
@@ -167,8 +150,7 @@ class table_actions():
         self.s.pack(side="top", fill="both", expand=True)
 
     def showallrecords(self):
-        q1 = self.get_q1()
-        self.cur.execute(q1).f
+        self.cur.execute("DESCRIBE {}".format(self.table_name))
         attr = list(self.cur.fetchall())
         self.cur.execute("SELECT * FROM {}".format(self.table_name))
         dat = list(self.cur.fetchall())
@@ -196,6 +178,7 @@ class table_actions():
             q = self.get_q4()
             val = tuple(e)
             self.cur.execute(q, val)
+            self.connection.commit()
 
     def del_recs(self):
         e = []
@@ -212,6 +195,7 @@ class table_actions():
             print(q)
             val = tuple(e[0])
             self.cur.execute(q, val)
+            self.connection.commit()
 
     def update_recs(self):
         e = []
@@ -230,9 +214,9 @@ class table_actions():
             ext = {key: value for key, value in pair.items()
                    if value != ''}
             ext2 = list(ext.keys())
-            print(ext2)
+            # print(ext2)
             ext3 = list(ext.values())
-            print(ext3)
+            # print(ext3)
             if (len(ext2) > 2):
                 Label(self.frame2, text="Can only update 1 attribute at a time", fg='red', bg='light grey', font=self.font2).grid(
                     row=13, column=27)
@@ -240,8 +224,9 @@ class table_actions():
                 q = self.get_q5()
                 p = [ext3[1], ext3[0]]
                 val = tuple(p)
-                print(val)
+                # print(val)
                 self.cur.execute(q.format(ext2[1]), val)
+                self.connection.commit()
 
     def table_Submit(self, arg1):
         if arg1 == "view":

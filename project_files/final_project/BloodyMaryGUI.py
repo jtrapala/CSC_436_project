@@ -77,7 +77,7 @@ def open_staff_window():
 def buttonHandler_table(arg1):
 
     # Use enter function
-    print("Add entry: ", arg1)
+    print("Using table: ", arg1)
     # print number
     if arg1 == "blood_drive":
         # e = blood_drive_entry.get()
