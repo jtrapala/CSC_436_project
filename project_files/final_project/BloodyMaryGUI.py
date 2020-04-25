@@ -140,40 +140,47 @@ blood_frame = Frame(root, bg='dark red', bd=3)
 blood_frame.place(relx=0.5, relwidth=1, relheight=1, anchor='n')
 
 # Data Entry Frame
-# data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
-# data_entry_frame.place(relx=0.5, rely=0.04, relwidth=0.75,
-#                      relheight=0.40, anchor='n')
-
+data_entry_frame = Frame(blood_frame, bg='light grey', bd=5)
+data_entry_frame.place(x=450, y=200, anchor='center')
 
 # Fonts
-bt_font = tkinter.font.Font(family='Arial', size=16, weight=tkinter.font.BOLD)
+bt_font = tkinter.font.Font(
+    family='Chiller', size=40, weight=tkinter.font.BOLD)
 m_font = tkinter.font.Font(family='Arial', size=12, weight=tkinter.font.BOLD)
+
+# Front text
+front_label = Label(blood_frame, bg='dark red',
+                    text="Bloody Mary's Blood Bank", font=bt_font)
+front_label.place(x=450, y=70, anchor='center')
 
 
 # Blood Bank Section
-# blood_bank_entry = Entry(blood_frame, width=40, font=bt_font)
-# blood_bank_entry.grid(row=1, column=1, padx=20, pady=10)
 im1 = Image.open(pth + '\\button_imgs\\blood_bank.jpg')
 im1 = im1.resize((100, 100))
 ph1 = ImageTk.PhotoImage(im1)
-blood_bank_button = Button(blood_frame, text="Blood Bank Table Actions", image=ph1,
+bb_label = Label(data_entry_frame,
+                 text="Blood Bank Table Actions", bg='light grey')
+bb_label.grid(row=4, column=1, sticky=S, padx=5)
+blood_bank_button = Button(data_entry_frame, text="Blood Bank Table Actions", image=ph1,
                            command=lambda arg1="blood_bank": buttonHandler_table("blood_bank"))
 blood_bank_button.image = ph1
 blood_bank_button.bind("<Return>", lambda event,
                        arg1="blood_bank": buttonHandler_table(event, arg1))
-blood_bank_button.grid(row=3, column=1, sticky=S)
+blood_bank_button.grid(row=3, column=1, sticky=S, padx=5)
+
 # Blood Drive Section
-# blood_drive_entry = Entry(blood_frame, width=40, font=bt_font)
-# blood_drive_entry.grid(row=2, column=1, padx=20, pady=10)
 im2 = Image.open(pth + '\\button_imgs\\blood_drive.jpg')
 im2 = im2.resize((100, 100))
 ph2 = ImageTk.PhotoImage(im2)
-blood_drive_button = Button(blood_frame, text="Blood Drive Table Actions", image=ph2,
+bd_label = Label(data_entry_frame,
+                 text="Blood Drive Table Actions", bg='light grey')
+bd_label.grid(row=4, column=2, sticky=S, padx=5)
+blood_drive_button = Button(data_entry_frame, text="Blood Drive Table Actions", image=ph2,
                             command=lambda arg1="blood_drive": buttonHandler_table("blood_drive"))
 blood_drive_button.image = ph2
 blood_drive_button.bind("<Return>", lambda event,
                         arg1="blood_drive": buttonHandler_a(event, arg1))
-blood_drive_button.grid(row=3, column=2, sticky=S)
+blood_drive_button.grid(row=3, column=2, sticky=S, padx=5)
 
 # Donor Section
 # donor_entry = Entry(blood_frame, width=40, font=bt_font)
@@ -181,12 +188,15 @@ blood_drive_button.grid(row=3, column=2, sticky=S)
 im3 = Image.open(pth + '\\button_imgs\\donor.jpg')
 im3 = im3.resize((100, 100))
 ph3 = ImageTk.PhotoImage(im3)
-donor_button = Button(blood_frame, text="Donor Table Actions", image=ph3,
+donor_label = Label(
+    data_entry_frame, text="Donor Table Actions", bg='light grey')
+donor_label.grid(row=4, column=3, sticky=S, padx=5)
+donor_button = Button(data_entry_frame, text="Donor Table Actions", image=ph3,
                       command=lambda arg1="donor": buttonHandler_table("donor"))
 donor_button.image = ph3
 donor_button.bind("<Return>", lambda event,
                   arg1="donor": buttonHandler_a(event, arg1))
-donor_button.grid(row=3, column=3, sticky=S)
+donor_button.grid(row=3, column=3, sticky=S, padx=5)
 
 # Recipient Section
 # recipient_entry = Entry(blood_frame, width=40, font=bt_font)
@@ -194,12 +204,15 @@ donor_button.grid(row=3, column=3, sticky=S)
 im4 = Image.open(pth + '\\button_imgs\\recp.jpg')
 im4 = im4.resize((100, 100))
 ph4 = ImageTk.PhotoImage(im4)
-recipient_button = Button(blood_frame, text="Recipient Table Actions", image=ph4,
+r_label = Label(data_entry_frame,
+                text="Recipient Table Actions", bg='light grey')
+r_label.grid(row=4, column=4, sticky=S, padx=5)
+recipient_button = Button(data_entry_frame, text="Recipient Table Actions", image=ph4,
                           command=lambda arg1="recipient": buttonHandler_table("recipient"))
 recipient_button.image = ph4
 recipient_button.bind("<Return>", lambda event,
                       arg1="recipient": buttonHandler_a(event, arg1))
-recipient_button.grid(row=3, column=4, sticky=S)
+recipient_button.grid(row=3, column=4, sticky=S, padx=5)
 
 # Staff Section
 # staff_entry = Entry(blood_frame, width=40, font=bt_font)
@@ -207,24 +220,29 @@ recipient_button.grid(row=3, column=4, sticky=S)
 im5 = Image.open(pth + '\\button_imgs\\staff.jpg')
 im5 = im5.resize((100, 100))
 ph5 = ImageTk.PhotoImage(im5)
-staff_button = Button(blood_frame, text="Staff Table Actions", image=ph5,
+s_label = Label(data_entry_frame, text="Staff Table Actions", bg='light grey')
+s_label.grid(row=4, column=5, sticky=S, padx=5)
+staff_button = Button(data_entry_frame, text="Staff Table Actions", image=ph5,
                       command=lambda arg1="staff": buttonHandler_table("staff"))
 staff_button.image = ph5
 staff_button.bind("<Return>", lambda event,
                   arg1="staff": buttonHandler_a(event, arg1))
-staff_button.grid(row=3, column=5, sticky=W)
+staff_button.grid(row=3, column=5, sticky=W, padx=5)
 # Blood Section
 # blood_inv_entry = Entry(blood_frame, width=40, font=bt_font)
 # blood_inv_entry.grid(row=6, column=1, padx=20, pady=10)
 im6 = Image.open(pth + '\\button_imgs\\blood_inv.jpg')
 im6 = im6.resize((100, 100))
 ph6 = ImageTk.PhotoImage(im6)
-blood_inv_button = Button(blood_frame, text="Blood Inventory Table Actions", image=ph6,
+bi_label = Label(data_entry_frame,
+                 text="Blood Inventory Table Actions", bg='light grey')
+bi_label.grid(row=4, column=6, sticky=S, padx=5)
+blood_inv_button = Button(data_entry_frame, text="Blood Inventory Table Actions", image=ph6,
                           command=lambda arg1="blood_inv": buttonHandler_table("blood_inv"))
 blood_inv_button.image = ph6
 blood_inv_button.bind("<Return>", lambda event,
                       arg1="blood_inv": buttonHandler_a(event, arg1))
-blood_inv_button.grid(row=3, column=6, sticky=S)
+blood_inv_button.grid(row=3, column=6, sticky=S, padx=5)
 
 
 # Menu

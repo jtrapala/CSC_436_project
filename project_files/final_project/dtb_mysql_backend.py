@@ -194,7 +194,7 @@ def bdrive_add(entry, c, conn):
 def inv_add(entry, c, conn):
     val = (entry[0], entry[1], entry[2],
            entry[3], entry[4], entry[5])
-    qry = "INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)VALUES ( % s, % s, % s, % s, % s, % s, % s, % s, % s)"
+    qry = "INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     c.execute(qry, val)
     conn.commit()
 # INSERT INTO staff(Staff_ID, sname, Address, Phone, Shift, Gender, DOB, Bank_ID)
@@ -293,62 +293,38 @@ def see_recps(c):
 
 def del_bbanks(c):
     print("Row deleted from Blood Banks Table")
-    c.execute('''DELETE FROM b_bank WHERE bb_ID = %s''')
+    c.execute('''DELETE FROM b_bank WHERE bb_ID = %s;''')
     print("\n")
 
 
 def del_bbdrives(c):
     print("Row deleted from Blood Drives Table")
-    c.execute('''DELETE FROM blood_drive WHERE bdrive_ID = %s''')
+    c.execute('''DELETE FROM blood_drive WHERE bdrive_ID = %s;''')
     print("\n")
 
 
 def del_blood(c):
     print("Row deleted from Blood Table")
-    c.execute('''DELETE FROM blood WHERE Bloodbag_number = %s ''')
+    c.execute('''DELETE FROM blood WHERE Bloodbag_number = %s; ''')
     print("\n")
 
 
 def del_donors(c):
     print("Row deleted from Donors Table")
-    c.execute('''DELETE FROM donor WHERE Donor_ID = %s ''')
+    c.execute('''DELETE FROM donor WHERE Donor_ID = %s; ''')
     print("\n")
 
 
 def del_recps(c):
     print("Row deleted from Recipients Table")
-    c.execute('''DELETE FROM recipient WHERE recip_ID = %s''')
+    c.execute('''DELETE FROM recipient WHERE recip_ID = %s;''')
     print("\n")
 
 
 def del_staff(c):
     print("Row deleted from Staff Table")
-    c.execute('''DELETE FROM staff WHERE Staff_ID = %s''')
+    c.execute('''DELETE FROM staff WHERE Staff_ID = %s;''')
     print("\n")
-
-
-def update_bbanks(c):
-    pass
-
-
-def update_bbanks(c):
-    pass
-
-
-def update_bbanks(c):
-    pass
-
-
-def update_bbanks(c):
-    pass
-
-
-def update_bbanks(c):
-    pass
-
-
-def update_bbanks(c):
-    pass
 
 
 def db_close(conn):
