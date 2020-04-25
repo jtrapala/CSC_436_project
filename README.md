@@ -44,28 +44,28 @@ python -u "c:\path\final_project\BloodyMaryGUI.py"
 
 ### Main Window
 
-![alt text](screenshots/main.png "Main Window")
+![alt text](final_project/screenshots/main.png "Main Window")
 
 ### Blood Bank Window
 
-![alt text](screenshots/win1.png "Blood Bank Window")
+![alt text](final_project/screenshots/win1.png "Blood Bank Window")
 
 ### Blood Drive Window
 
-![alt text](screenshots/win2.png "Blood Drive Window")
+![alt text](final_project/screenshots/win2.png "Blood Drive Window")
 
 ### Donor Table Window
 
-![alt text](screenshots/win3.png "Main Window")
+![alt text](final_project/screenshots/win3.png "Main Window")
 
 ### Recipient Table Window
 
-![alt text](screenshots/win4.png "Recipient Table Window")
+![alt text](final_project/screenshots/win4.png "Recipient Table Window")
 
 ### Staff Table Window
 
-![alt text](screenshots/win5.png "Staff Table Window")
+![alt text](final_project/screenshots/win5.png "Staff Table Window")
 
 ### Blood Inventory Table Window
 
-![alt text](screenshots/win6.png "Blood Inventory Table Window")
+![alt text](final_project/screenshots/win6.png "Blood Inventory Table Window")
