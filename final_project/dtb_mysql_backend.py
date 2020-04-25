@@ -18,7 +18,7 @@ global conn, c
 def start_c1():
     conn = mysql.connect(host="localhost",
                          user="root",
-                         passwd="passwd",
+                         passwd="rexoatie45",
                          database="BloodBank")
     return conn
 

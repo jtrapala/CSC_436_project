@@ -53,17 +53,17 @@ class table_actions():
 
     def get_q3(self):
         if (self.table_name == "blood_drive"):
-            return "DELETE FROM blood_drive WHERE bdrive_ID = %s;"
+            return "DELETE FROM blood_drive WHERE bdrive_ID = %s"
         elif (self.table_name == "b_bank"):
-            return "DELETE FROM b_bank WHERE bb_ID = %s;"
+            return "DELETE FROM b_bank WHERE bb_ID = %s"
         elif (self.table_name == "blood"):
-            return "DELETE FROM blood WHERE Bloodbag_number = %s;"
+            return "DELETE FROM blood WHERE Bloodbag_number = %s"
         elif (self.table_name == "donor"):
-            return "DELETE FROM donor WHERE Donor_ID = %s;"
+            return "DELETE FROM donor WHERE Donor_ID = %s"
         elif (self.table_name == "recipient"):
-            return "DELETE FROM recipient WHERE recip_ID = %s;"
+            return "DELETE FROM recipient WHERE recip_ID = %s"
         elif (self.table_name == "staff"):
-            return "DELETE FROM staff WHERE Staff_ID = %s;"
+            return "DELETE FROM staff WHERE Staff_ID = %s"
 
     # INSERT
     def get_q4(self):
@@ -83,17 +83,17 @@ class table_actions():
     # UPDATE
     def get_q5(self):
         if (self.table_name == "blood_drive"):
-            return "UPDATE blood_drive SET {} = %s WHERE bdrive_ID=%s;"
+            return "UPDATE blood_drive SET {} = %s WHERE bdrive_ID=%s"
         elif (self.table_name == "b_bank"):
             return "UPDATE b_bank SET {} = %s WHERE bb_ID=%s"
         elif (self.table_name == "blood"):
-            return "UPDATE Blood SET {} = %s WHERE Bloodbag_number=%s;"
+            return "UPDATE Blood SET {} = %s WHERE Bloodbag_number=%s"
         elif (self.table_name == "donor"):
             return "UPDATE donor SET {} = %s WHERE Donor_ID=%s;"
         elif (self.table_name == "recipient"):
-            return "UPDATE recipient {} %s = %s WHERE recip_ID=%s;"
+            return "UPDATE recipient {} %s = %s WHERE recip_ID=%s"
         elif (self.table_name == "staff"):
-            return "UPDATE staff SET {} = %s WHERE Staff_ID=%s;"
+            return "UPDATE staff SET {} = %s WHERE Staff_ID=%s"
 
     def create_action_buttons(self):
         # ADD button
@@ -193,7 +193,8 @@ class table_actions():
         else:
             q = self.get_q3()
             print(q)
-            val = tuple(e[0])
+            val = (e[0],)
+            print(val)
             self.cur.execute(q, val)
             self.connection.commit()
 
