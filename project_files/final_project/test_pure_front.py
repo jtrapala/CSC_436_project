@@ -38,9 +38,9 @@ class table_actions():
     def get_q1(self):
         if (self.table_name == "blood_drive"):
             return "DESCRIBE blood_drive;"
-        elif (self.table_name == "blood_bank"):
+        elif (self.table_name == "b_bank"):
             return "DESCRIBE b_bank;"
-        elif (self.table_name == "blood_inv"):
+        elif (self.table_name == "blood"):
             return "DESCRIBE blood;"
         elif (self.table_name == "donor"):
             return "DESCRIBE donor;"
@@ -49,27 +49,28 @@ class table_actions():
         elif (self.table_name == "staff"):
             return "DESCRIBE staff;"
 
-    def get_q2(self):
+    def get_table_name(self):
         if (self.table_name == "blood_drive"):
-            return "SELECT * FROM blood_drive;"
-        elif (self.table_name == "blood_bank"):
-            return "SELECT * FROM b_bank;"
-        elif (self.table_name == "blood_inv"):
-            return "SELECT * FROM blood;"
+            return 'blood_drive'
+        elif (self.table_name == "b_bank"):
+            return 'b_bank'
+        elif (self.table_name == "blood"):
+            return 'blood'
         elif (self.table_name == "donor"):
-            return "SELECT * FROM donor;"
+            return 'donor'
         elif (self.table_name == "recipient"):
-            return "SELECT * FROM recipient;"
+            return 'recipient'
         elif (self.table_name == "staff"):
-            return "SELECT * FROM staff;"
+            return 'staff'
+
     # DELETE
 
     def get_q3(self):
         if (self.table_name == "blood_drive"):
             return "DELETE FROM blood_drive WHERE bb_ID = %s;"
-        elif (self.table_name == "blood_bank"):
+        elif (self.table_name == "b_bank"):
             return "DELETE FROM b_bank WHERE bb_ID = %s;"
-        elif (self.table_name == "blood_inv"):
+        elif (self.table_name == "blood"):
             return "DELETE FROM blood WHERE Bloodbag_number = %s;"
         elif (self.table_name == "donor"):
             return "DELETE FROM donor WHERE Donor_ID = %s;"
@@ -82,9 +83,9 @@ class table_actions():
     def get_q4(self):
         if (self.table_name == "blood_drive"):
             return "INSERT INTO blood_drive (bdrive_ID, bd_name, Address, City, State, Phone, bd_desc, bank_id)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-        elif (self.table_name == "blood_bank"):
+        elif (self.table_name == "b_bank"):
             return "INSERT INTO b_bank(bb_ID, bb_name, Address, City, State, Phone, admin_name)VALUES (%s,%s,%s,%s,%s,%s,%s)"
-        elif (self.table_name == "blood_inv"):
+        elif (self.table_name == "blood"):
             return "INSERT INTO Blood (Bloodbag_number, blood_type, Blood_Amount, Haemoglobin_Content, Double_Red, donor_ID)VALUES ( % s, % s, % s, % s, % s, % s, % s, % s, % s)"
         elif (self.table_name == "donor"):
             return "INSERT INTO donor(Donor_ID, dname, Address, Phone_Number, Medical_Condition, Gender, DOB, Blood_Type, Bank_ID)VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -96,17 +97,17 @@ class table_actions():
     # UPDATE
     def get_q5(self):
         if (self.table_name == "blood_drive"):
-            return "UPDATE blood_drive SET %s = %s WHERE bdrive_ID=%s;"
-        elif (self.table_name == "blood_bank"):
+            return "UPDATE blood_drive SET {} = %s WHERE bdrive_ID=%s;"
+        elif (self.table_name == "b_bank"):
             return "UPDATE b_bank SET {} = %s WHERE bb_ID=%s"
-        elif (self.table_name == "blood_inv"):
-            return "UPDATE Blood SET %s = %s WHERE Bloodbag_number=%s;"
+        elif (self.table_name == "blood"):
+            return "UPDATE Blood SET {} = %s WHERE Bloodbag_number=%s;"
         elif (self.table_name == "donor"):
-            return "UPDATE donor SET %s = %s WHERE Donor_ID=%s;"
+            return "UPDATE donor SET {} = %s WHERE Donor_ID=%s;"
         elif (self.table_name == "recipient"):
-            return "UPDATE recipient SET %s = %s WHERE recip_ID=%s;"
+            return "UPDATE recipient {} %s = %s WHERE recip_ID=%s;"
         elif (self.table_name == "staff"):
-            return "UPDATE staff SET %s = %s WHERE Staff_ID=%s;"
+            return "UPDATE staff SET {} = %s WHERE Staff_ID=%s;"
 
     def create_action_buttons(self):
         # ADD button
@@ -167,10 +168,9 @@ class table_actions():
 
     def showallrecords(self):
         q1 = self.get_q1()
-        q2 = self.get_q2()
-        self.cur.execute(q1)
+        self.cur.execute(q1).f
         attr = list(self.cur.fetchall())
-        self.cur.execute(q2)
+        self.cur.execute("SELECT * FROM {}".format(self.table_name))
         dat = list(self.cur.fetchall())
         # print(dat)
         for i in range(len(attr)):

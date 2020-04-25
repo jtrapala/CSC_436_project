@@ -85,13 +85,13 @@ def buttonHandler_table(arg1):
         sub_win = Toplevel(root)
         table_actions(sub_win, conn, arg1)
         sub_win.title("Blood Drive Window")
-    elif arg1 == "blood_inv":
+    elif arg1 == "blood":
         # e = blood_drive_entry.get()
         # print("Entry:", e)
         sub_win = Toplevel(root)
         table_actions(sub_win, conn, arg1)
         sub_win.title("Blood Drive Window")
-    elif arg1 == "blood_bank":
+    elif arg1 == "b_bank":
             # e = blood_drive_entry.get()
             # print("Entry:", e)
         sub_win = Toplevel(root)
@@ -162,10 +162,10 @@ bb_label = Label(data_entry_frame,
                  text="Blood Bank Table Actions", bg='light grey')
 bb_label.grid(row=4, column=1, sticky=S, padx=5)
 blood_bank_button = Button(data_entry_frame, text="Blood Bank Table Actions", image=ph1,
-                           command=lambda arg1="blood_bank": buttonHandler_table("blood_bank"))
+                           command=lambda arg1="b_bank": buttonHandler_table("b_bank"))
 blood_bank_button.image = ph1
 blood_bank_button.bind("<Return>", lambda event,
-                       arg1="blood_bank": buttonHandler_table(event, arg1))
+                       arg1="b_bank": buttonHandler_table(event, arg1))
 blood_bank_button.grid(row=3, column=1, sticky=S, padx=5)
 
 # Blood Drive Section
@@ -238,10 +238,10 @@ bi_label = Label(data_entry_frame,
                  text="Blood Inventory Table Actions", bg='light grey')
 bi_label.grid(row=4, column=6, sticky=S, padx=5)
 blood_inv_button = Button(data_entry_frame, text="Blood Inventory Table Actions", image=ph6,
-                          command=lambda arg1="blood_inv": buttonHandler_table("blood_inv"))
+                          command=lambda arg1="blood": buttonHandler_table("blood"))
 blood_inv_button.image = ph6
 blood_inv_button.bind("<Return>", lambda event,
-                      arg1="blood_inv": buttonHandler_a(event, arg1))
+                      arg1="blood": buttonHandler_a(event, arg1))
 blood_inv_button.grid(row=3, column=6, sticky=S, padx=5)
 
 
