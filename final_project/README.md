@@ -7,9 +7,7 @@ Troy Durand tsdurand@my.uri.edu</br>
 Hassan Bhatti hassan_bhatti@my.uri.edu</br>
 Jane Trapala jane_trapala@my.uri.edu
 
-Repository link:
-
-https://github.com/jtrapala/CSC_436_project
+Repository link: https://github.com/jtrapala/CSC_436_project
 
 ## How to run
 
