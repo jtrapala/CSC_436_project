@@ -11,7 +11,11 @@ Repository link:
 
 ## How to run
 
+Make sure the directory is changed to final_project, or else the button images won't load
+
 ### Linux
+
+    /usr/bin/python3.6 /path/final_project/BloodyMaryGUI.py
 
 ### Windows
 
