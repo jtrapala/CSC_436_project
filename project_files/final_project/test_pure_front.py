@@ -166,7 +166,7 @@ class table_actions():
         for i in range(len(self.entries)):
             # print(self.entries[i].get())
             e.append(self.entries[i].get())
-        print(e)
+        # print(e)
         if (e[0] == ''):
             Label(self.frame2, text="No Primary Key", fg='red', bg='light grey', font=self.font2).grid(
                 row=13, column=27)
@@ -185,7 +185,7 @@ class table_actions():
         for i in range(len(self.entries)):
             # print(self.entries[i].get())
             e.append(self.entries[i].get())
-        print(e)
+        # print(e)
         if (e[0] == ''):
             Label(self.frame2, text="No Primary Key", fg='red', bg='light grey', font=self.font2).grid(
                 row=13, column=27)
@@ -202,7 +202,7 @@ class table_actions():
         for i in range(len(self.entries)):
             # print(self.entries[i].get())
             e.append(self.entries[i].get())
-        print(e)
+        # print(e)
         if (e[0] == ''):
             Label(self.frame2, text="No Primary Key", fg='red', bg='light grey', font=self.font2).grid(
                 row=13, column=27)
@@ -233,10 +233,10 @@ class table_actions():
             print("Viewing table")
             self.showallrecords()
         elif arg1 == "UPDATE":
-            # print("Viewing table")
+            print("Updating table")
             self.update_recs()
         elif arg1 == "ADD":
-            # print("Viewing table")
+            print("Inserting into table")
             self.add_recs()
         elif arg1 == "DELETE":
             self.del_recs()
